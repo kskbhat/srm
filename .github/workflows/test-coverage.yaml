@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
@@ -25,15 +26,21 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::covr
+          extra-packages: any::covr, any::xml2
+          needs: coverage
 
-      - name: Calculate test coverage
-        run: covr::to_cobertura(covr::package_coverage(), "coverage.xml")
+      - name: Calculate and upload test coverage via covr
+        run: |
+          cov <- covr::package_coverage()
+          print(cov)
+          covr::to_cobertura(cov, "coverage.xml")
+          covr::codecov(coverage = cov, token = "${{ secrets.CODECOV_TOKEN }}")
         shell: Rscript {0}
 
-      - name: Upload coverage to Codecov
+      - name: Upload coverage to Codecov Action
         uses: codecov/codecov-action@v4
+        if: always()
         with:
-          files: ./coverage.xml
+          file: ./coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
