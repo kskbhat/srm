@@ -41,6 +41,25 @@ ising_simulation(size = 10, beta = 0.44, n_steps = 10000)
 Did You Know? Ernst Ising solved the 1D model in his 1925 PhD thesis and incorrectly thought 2D wouldn't have phase transitions!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>size</code></td><td><code>10</code></td><td>Lattice grid dimension (size x size).</td></tr>
+  <tr><td><code>beta</code></td><td><code>0.44</code></td><td>Inverse temperature parameter beta = 1/T controlling spin coupling strength.</td></tr>
+  <tr><td><code>n_steps</code></td><td><code>10000</code></td><td>Total spin update attempts.</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?ising_simulation</code> or <code>help(ising_simulation, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

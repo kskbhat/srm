@@ -41,6 +41,24 @@ multilevel_splitting(levels = c(2, 4, 6), n_particles = 1000)
 Did You Know? Multi-level splitting multiplies surviving particles at each threshold, turning a 1-in-a-billion event into feasible sub-problems!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>levels</code></td><td><code>c(2, 4, 6)</code></td><td>Vector of intermediate threshold levels L1 < L2 < ... < Lm.</td></tr>
+  <tr><td><code>n_particles</code></td><td><code>1000</code></td><td>Number of particles evaluated per level threshold.</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?multilevel_splitting</code> or <code>help(multilevel_splitting, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

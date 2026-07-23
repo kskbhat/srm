@@ -41,6 +41,27 @@ importance_sampling(h = function(x) x > 3, f = dnorm, g = function(x) dnorm(x, m
 Did You Know? Importance sampling is widely used in nuclear shielding simulations to track rare particle penetration!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>h</code></td><td><code>function(x) x > 3</code></td><td>Target quantity or event indicator function h(x).</td></tr>
+  <tr><td><code>f</code></td><td><code>dnorm</code></td><td>Target probability density function f(x).</td></tr>
+  <tr><td><code>g</code></td><td><code>function(x) dnorm(x, mean=3)</code></td><td>Proposal probability density function g(x) centered in rare event region.</td></tr>
+  <tr><td><code>rg</code></td><td><code>function(n) rnorm(n, mean=3)</code></td><td>Random sampler function for proposal density g(x).</td></tr>
+  <tr><td><code>n</code></td><td><code>5000</code></td><td>Sample size.</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?importance_sampling</code> or <code>help(importance_sampling, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

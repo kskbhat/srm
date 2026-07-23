@@ -41,6 +41,24 @@ sim_poisson_process(T_max = 10, rate = 2)
 Did You Know? Simon Poisson originally derived his distribution while studying horse-kick fatalities in the Prussian army!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>T_max</code></td><td><code>10</code></td><td>Total simulation time horizon.</td></tr>
+  <tr><td><code>rate</code></td><td><code>2</code></td><td>Event arrival rate lambda > 0 (average events per unit time).</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?sim_poisson_process</code> or <code>help(sim_poisson_process, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

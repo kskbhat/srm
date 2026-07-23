@@ -41,6 +41,26 @@ metropolis_hastings(target_log_density = function(x) dnorm(x, log=TRUE), init = 
 Did You Know? Metropolis-Hastings was chosen by IEEE Computing as one of the top 10 most influential algorithms of the 20th century!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>target_log_density</code></td><td><code>function(x) dnorm(x, log=TRUE)</code></td><td>Function computing log target density ln pi(x).</td></tr>
+  <tr><td><code>init</code></td><td><code>0</code></td><td>Initial starting parameter state x_0.</td></tr>
+  <tr><td><code>n_iter</code></td><td><code>5000</code></td><td>Total MCMC iterations.</td></tr>
+  <tr><td><code>proposal_sd</code></td><td><code>1</code></td><td>Standard deviation sigma_prop of Gaussian random-walk proposal q(y|x).</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?metropolis_hastings</code> or <code>help(metropolis_hastings, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

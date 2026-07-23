@@ -41,6 +41,26 @@ adaptive_metropolis(target_log_density = function(x) -0.5 * sum(x^2), init = c(0
 Did You Know? Diminishing adaptation ensures the chain remains ergodic even though updates depend on past history!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>target_log_density</code></td><td><code>function(x) -0.5 * sum(x^2)</code></td><td>Target log-density function.</td></tr>
+  <tr><td><code>init</code></td><td><code>c(0, 0)</code></td><td>Vector of initial starting parameter values.</td></tr>
+  <tr><td><code>n_iter</code></td><td><code>3000</code></td><td>Total MCMC iterations.</td></tr>
+  <tr><td><code>t0</code></td><td><code>100</code></td><td>Adaptation start iteration.</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?adaptive_metropolis</code> or <code>help(adaptive_metropolis, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

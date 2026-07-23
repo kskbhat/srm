@@ -41,6 +41,24 @@ antithetic_mc(g = function(x) exp(x), n = 5000)
 Did You Know? Antithetic variates require zero extra random number generation—you get double the data for free!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>g</code></td><td><code>function(x) exp(x)</code></td><td>Monotonic integrand function g(x) on interval (0,1).</td></tr>
+  <tr><td><code>n</code></td><td><code>5000</code></td><td>Total sample size (split into n/2 antithetic pairs (U, 1-U)).</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?antithetic_mc</code> or <code>help(antithetic_mc, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

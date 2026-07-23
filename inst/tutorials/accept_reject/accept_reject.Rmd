@@ -41,6 +41,25 @@ accept_reject_beta(n = 500, shape1 = 2, shape2 = 5)
 Did You Know? Accept-reject is the secret engine inside R's rbeta() and rgamma() generators!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>n</code></td><td><code>500</code></td><td>Target number of accepted samples desired.</td></tr>
+  <tr><td><code>shape1</code></td><td><code>2</code></td><td>Alpha shape parameter of target Beta(alpha, beta) distribution.</td></tr>
+  <tr><td><code>shape2</code></td><td><code>5</code></td><td>Beta shape parameter of target Beta(alpha, beta) distribution.</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?accept_reject_beta</code> or <code>help(accept_reject_beta, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

@@ -41,6 +41,24 @@ inv_transform_exp(n = 100, rate = 2)
 Did You Know? Inverse-transform is exact—it maps 100% of probability mass without rejecting a single draw!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>n</code></td><td><code>100</code></td><td>Number of exponential random variates to generate.</td></tr>
+  <tr><td><code>rate</code></td><td><code>2</code></td><td>Rate parameter lambda > 0 of the Exponential distribution (mean = 1/lambda).</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?inv_transform_exp</code> or <code>help(inv_transform_exp, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

@@ -41,6 +41,25 @@ calc_sample_size(p = 0.5, d = 0.05, conf_level = 0.95)
 Did You Know? The 1936 Literary Digest poll surveyed 2.4 million people but wrongly predicted the US election because of sampling bias!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>p</code></td><td><code>0.5</code></td><td>Anticipated population proportion or prevalence. Setting p = 0.5 is conservative as it yields maximum variance p(1-p).</td></tr>
+  <tr><td><code>d</code></td><td><code>0.05</code></td><td>Desired margin of error or precision bound (e.g., 0.05 means ±5% precision).</td></tr>
+  <tr><td><code>conf_level</code></td><td><code>0.95</code></td><td>Confidence level (e.g., 0.95 corresponds to a 95% confidence interval where Z = 1.96).</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?calc_sample_size</code> or <code>help(calc_sample_size, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

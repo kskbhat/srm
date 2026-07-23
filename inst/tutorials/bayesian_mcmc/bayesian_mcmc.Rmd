@@ -42,6 +42,24 @@ metropolis_hastings(function(th) dnorm(th, log=TRUE) + sum(dnorm(ehr_cohort$age,
 Did You Know? Thomas Bayes' famous theorem was published posthumously in 1763 by his friend Richard Price!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>target_log_density</code></td><td><code>log-prior + log-likelihood</code></td><td>Function combining log-prior ln p(theta) and log-likelihood sum ln p(y_i|theta).</td></tr>
+  <tr><td><code>init</code></td><td><code>50</code></td><td>Initial parameter guess theta_0.</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?metropolis_hastings</code> or <code>help(metropolis_hastings, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise

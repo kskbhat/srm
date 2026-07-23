@@ -41,6 +41,25 @@ bootstrap_ci(data = ehr_cohort$age, statistic = mean, R = 1000)
 Did You Know? Bradley Efron introduced the Bootstrap in 1979, revolutionizing applied statistics without assuming bell curves!
 </div>
 
+
+### 🔍 Function Arguments Explained
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px; margin-bottom:15px; border:1px solid #ddd;">
+  <thead style="background-color:#004085; color:white;">
+    <tr><th style="padding:8px; text-align:left;">Argument</th><th style="padding:8px; text-align:left;">Default</th><th style="padding:8px; text-align:left;">Description & Meaning for Students</th></tr>
+  </thead>
+  <tbody>
+  <tr><td><code>data</code></td><td><code>ehr_cohort$age</code></td><td>Numeric vector of observed sample data.</td></tr>
+  <tr><td><code>statistic</code></td><td><code>mean</code></td><td>Function computing the parameter statistic of interest (e.g., mean, median).</td></tr>
+  <tr><td><code>R</code></td><td><code>1000</code></td><td>Number of bootstrap resamples drawn with replacement.</td></tr>
+  </tbody>
+</table>
+
+<div style="background-color: #eef9f1; border-left: 5px solid #28a745; padding: 10px; margin-bottom: 15px;">
+<strong>📚 Need full R Documentation while working?</strong><br/>
+Run <code>?bootstrap_ci</code> or <code>help(bootstrap_ci, package = "srm")</code> in your RStudio Console to open the official package help file!
+</div>
+
 ---
 
 ## 🧠 Predict-First Checkpoint & Exercise
