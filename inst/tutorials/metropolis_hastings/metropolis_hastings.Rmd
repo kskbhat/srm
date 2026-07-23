@@ -1,0 +1,108 @@
+---
+title: "Metropolis-Hastings Algorithm"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🔴 Track 3: Advanced</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 20 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Markov Chains & Proposal Distributions
+</div>
+
+### 💡 Story-Driven Motivation
+> How do statisticians sample from complex 100-dimensional Bayesian posterior distributions when formulas are impossible to integrate? The Metropolis-Hastings algorithm steps through the landscape with random-walk candidate moves!
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+metropolis_hastings(target_log_density = function(x) dnorm(x, log=TRUE), init = 0, n_iter = 5000, proposal_sd = 1)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Metropolis-Hastings was chosen by IEEE Computing as one of the top 10 most influential algorithms of the 20th century!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+metropolis_hastings(target_log_density = function(x) dnorm(x, log=TRUE), init = 0, n_iter = 5000, proposal_sd = 1)
+```
+
+```{r practice-ex-solution}
+metropolis_hastings(target_log_density = function(x) dnorm(x, log=TRUE), init = 0, n_iter = 5000, proposal_sd = 1)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think MCMC samples are independent random numbers. (Wrong! MCMC samples are autocorrelated Markov steps).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("In high-dimensional target spaces, what is the theoretical optimal MCMC target acceptance rate for random-walk Metropolis?",
+    answer("Approximately 23.4%", correct = ("Approximately 23.4%" == "Approximately 23.4%")),
+    answer("100%", correct = ("100%" == "Approximately 23.4%")),
+    answer("50%", correct = ("50%" == "Approximately 23.4%")),
+    answer("5.0%", correct = ("5.0%" == "Approximately 23.4%")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

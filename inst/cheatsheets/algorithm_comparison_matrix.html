@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Statistical Research Methodology (SRM) - Algorithm Comparison Matrix</title>
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 30px; background-color: #f8f9fa; color: #212529; }
+  h1 { color: #003366; }
+  table { border-collapse: collapse; width: 100%; margin-top: 20px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  th, td { border: 1px solid #dee2e6; padding: 12px; text-align: left; }
+  th { background-color: #004085; color: white; }
+  tr:nth-child(even) { background-color: #f2f2f2; }
+  .badge-green { background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+  .badge-yellow { background: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+  .badge-red { background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>📊 SRM Algorithm Comparison Matrix</h1>
+<p>Quick-reference guide for selecting computational statistics and Monte Carlo algorithms for DDS 6106.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Track</th>
+      <th>Primary Use Case</th>
+      <th>Key Advantage / Strength</th>
+      <th>Main Limitation / Trap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Inverse-Transform</strong></td>
+      <td><span class="badge-green">Track 1</span></td>
+      <td>Sampling 1D continuous random variates</td>
+      <td>100% efficient; no rejected draws</td>
+      <td>Requires analytical inverse CDF F^-1(u)</td>
+    </tr>
+    <tr>
+      <td><strong>Accept-Reject</strong></td>
+      <td><span class="badge-yellow">Track 2</span></td>
+      <td>Sampling complex non-standard densities</td>
+      <td>Works even when F^-1(u) is unknown</td>
+      <td>High constant c causes many rejected draws</td>
+    </tr>
+    <tr>
+      <td><strong>Control Variates</strong></td>
+      <td><span class="badge-yellow">Track 2</span></td>
+      <td>Variance reduction in Monte Carlo integration</td>
+      <td>Reduces variance by (1 - rho^2) for correlated controls</td>
+      <td>Requires a control h(X) with known mean mu_h</td>
+    </tr>
+    <tr>
+      <td><strong>Antithetic Variates</strong></td>
+      <td><span class="badge-yellow">Track 2</span></td>
+      <td>Variance reduction using negative correlation</td>
+      <td>Zero extra random numbers required</td>
+      <td>Only works for monotonic integrand functions</td>
+    </tr>
+    <tr>
+      <td><strong>Importance Sampling</strong></td>
+      <td><span class="badge-yellow">Track 2</span></td>
+      <td>Estimating rare event probabilities & tail risks</td>
+      <td>Dramatically reduces variance in extreme tails</td>
+      <td>Unbounded weight ratios f(x)/g(x) cause variance explosion</td>
+    </tr>
+    <tr>
+      <td><strong>Bootstrap</strong></td>
+      <td><span class="badge-green">Track 1</span></td>
+      <td>Non-parametric confidence intervals & SEs</td>
+      <td>No distributional assumptions needed</td>
+      <td>Requires i.i.d. random sampling</td>
+    </tr>
+    <tr>
+      <td><strong>Metropolis-Hastings</strong></td>
+      <td><span class="badge-red">Track 3</span></td>
+      <td>High-dimensional Bayesian posterior sampling</td>
+      <td>Only requires unnormalized log target density</td>
+      <td>Autocorrelated samples; requires burn-in tuning</td>
+    </tr>
+    <tr>
+      <td><strong>Gibbs Sampling</strong></td>
+      <td><span class="badge-red">Track 3</span></td>
+      <td>Multi-parameter MCMC sampling</td>
+      <td>100% acceptance rate; no proposal tuning needed</td>
+      <td>Requires known full conditional distributions</td>
+    </tr>
+    <tr>
+      <td><strong>Coupling From The Past (CFTP)</strong></td>
+      <td><span class="badge-red">Track 3</span></td>
+      <td>Exact un-biased MCMC sampling</td>
+      <td>Completely eliminates burn-in bias</td>
+      <td>Requires monotonic state space coupling</td>
+    </tr>
+    <tr>
+      <td><strong>Robbins-Monro</strong></td>
+      <td><span class="badge-red">Track 3</span></td>
+      <td>Stochastic root-finding & optimization</td>
+      <td>Finds roots under random measurement noise</td>
+      <td>Step size decay sequence a_n = c/n must be tuned</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

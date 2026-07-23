@@ -1,0 +1,108 @@
+---
+title: "Sampling Designs & Power Calculations"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟢 Track 1: Essentials</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 12 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Basic Probability & Confidence Intervals
+</div>
+
+### 💡 Story-Driven Motivation
+> In a regional healthcare study, public health officials needed to survey 1,200 households to infer health coverage for 5 million citizens without bias. How did they calculate sample size and allocate samples across strata?
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+calc_sample_size(p = 0.5, d = 0.05, conf_level = 0.95)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? The 1936 Literary Digest poll surveyed 2.4 million people but wrongly predicted the US election because of sampling bias!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+calc_sample_size(p = 0.5, d = 0.05, conf_level = 0.95)
+```
+
+```{r practice-ex-solution}
+calc_sample_size(p = 0.5, d = 0.05, conf_level = 0.95)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think bigger samples compensate for selection bias. (Wrong! A biased sample of 1 million is still a biased sample).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("What happens to the required sample size n if you cut the margin of error d in half?",
+    answer("It doubles (2x)", correct = ("It doubles (2x)" == "It quadruples (4x)")),
+    answer("It quadruples (4x)", correct = ("It quadruples (4x)" == "It quadruples (4x)")),
+    answer("It stays the same", correct = ("It stays the same" == "It quadruples (4x)")),
+    answer("It decreases by half", correct = ("It decreases by half" == "It quadruples (4x)")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

@@ -1,0 +1,4 @@
+# Exported functions
+exportPattern("^[^.]")
+import(ggplot2)
+import(stats)

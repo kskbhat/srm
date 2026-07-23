@@ -1,0 +1,111 @@
+---
+title: "Bayesian MCMC Modeling"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🔴 Track 3: Advanced</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 20 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Prior & Likelihood Posterior Updating
+</div>
+
+### 💡 Story-Driven Motivation
+> Combining prior domain knowledge p(theta) with patient trial evidence p(y|theta) to sample full posterior distributions p(theta|y) for decision-making.
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+# Bayesian Posterior Sampling with Metropolis-Hastings
+metropolis_hastings(function(th) dnorm(th, log=TRUE) + sum(dnorm(ehr_cohort$age, mean=th, sd=10, log=TRUE)), init=50)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Thomas Bayes' famous theorem was published posthumously in 1763 by his friend Richard Price!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+# Bayesian Posterior Sampling with Metropolis-Hastings
+metropolis_hastings(function(th) dnorm(th, log=TRUE) + sum(dnorm(ehr_cohort$age, mean=th, sd=10, log=TRUE)), init=50)
+```
+
+```{r practice-ex-solution}
+# Bayesian Posterior Sampling with Metropolis-Hastings
+metropolis_hastings(function(th) dnorm(th, log=TRUE) + sum(dnorm(ehr_cohort$age, mean=th, sd=10, log=TRUE)), init=50)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually evaluate MCMC without checking convergence. (Always verify Gelman-Rubin R-hat < 1.05 and check trace plots).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("Which MCMC diagnostic statistic compares variance within chains to variance between chains to test convergence?",
+    answer("Gelman-Rubin R-hat", correct = ("Gelman-Rubin R-hat" == "Gelman-Rubin R-hat")),
+    answer("Akaike Information Criterion (AIC)", correct = ("Akaike Information Criterion (AIC)" == "Gelman-Rubin R-hat")),
+    answer("p-value", correct = ("p-value" == "Gelman-Rubin R-hat")),
+    answer("R-squared", correct = ("R-squared" == "Gelman-Rubin R-hat")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

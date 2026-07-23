@@ -1,0 +1,108 @@
+---
+title: "Jackknife Bias Estimation"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟡 Track 2: Intermediate</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 12 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Leave-One-Out Resampling
+</div>
+
+### 💡 Story-Driven Motivation
+> Before the bootstrap, Maurice Quenouille introduced the Jackknife in 1949 as a deterministic leave-one-out method to estimate parameter bias.
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+mean(financial_losses) # Explore leave-one-out jackknife statistics
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? John Tukey coined the name 'Jackknife' because like a boy scout's pocketknife, it is a handy tool for any situation!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+mean(financial_losses) # Explore leave-one-out jackknife statistics
+```
+
+```{r practice-ex-solution}
+mean(financial_losses) # Explore leave-one-out jackknife statistics
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think Jackknife works well for medians. (Wrong! Jackknife fails for non-smooth sample quantiles).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("How many resampled datasets does the Jackknife evaluate for a sample of size n?",
+    answer("Exactly n datasets", correct = ("Exactly n datasets" == "Exactly n datasets")),
+    answer("2^n datasets", correct = ("2^n datasets" == "Exactly n datasets")),
+    answer("1,000 datasets", correct = ("1,000 datasets" == "Exactly n datasets")),
+    answer("n^2 datasets", correct = ("n^2 datasets" == "Exactly n datasets")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

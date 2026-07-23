@@ -1,0 +1,108 @@
+---
+title: "Robbins-Monro Stochastic Approximation"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🔴 Track 3: Advanced</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 15 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Stochastic Root-Finding & Step Decay
+</div>
+
+### 💡 Story-Driven Motivation
+> Finding the root of a noisy, fluctuating function without computing explicit derivatives. Herbert Robbins and Sutton Monro pioneered stochastic approximation in 1951.
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+robbins_monro(noisy_g = function(th) (th - 3) + rnorm(1, sd=0.2), init = 0, n_iter = 1000, c = 1)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Robbins-Monro is the direct ancestor of Stochastic Gradient Descent (SGD) used to train deep neural networks!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+robbins_monro(noisy_g = function(th) (th - 3) + rnorm(1, sd=0.2), init = 0, n_iter = 1000, c = 1)
+```
+
+```{r practice-ex-solution}
+robbins_monro(noisy_g = function(th) (th - 3) + rnorm(1, sd=0.2), init = 0, n_iter = 1000, c = 1)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually keep step size a_n constant. (Wrong! Step sizes must decay such that sum(a_n) = infinity and sum(a_n^2) < infinity).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("Which step size decay sequence a_n satisfies the Robbins-Monro convergence conditions sum(a_n) = infinity and sum(a_n^2) < infinity?",
+    answer("a_n = 1 / n", correct = ("a_n = 1 / n" == "a_n = 1 / n")),
+    answer("a_n = 1 / n^2", correct = ("a_n = 1 / n^2" == "a_n = 1 / n")),
+    answer("a_n = 0.1 (constant)", correct = ("a_n = 0.1 (constant)" == "a_n = 1 / n")),
+    answer("a_n = 1 / sqrt(n)", correct = ("a_n = 1 / sqrt(n)" == "a_n = 1 / n")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

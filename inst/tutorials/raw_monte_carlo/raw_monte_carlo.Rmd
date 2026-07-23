@@ -1,0 +1,108 @@
+---
+title: "Raw Monte Carlo Integration"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟢 Track 1: Essentials</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 12 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Expectation & Variance Bounds
+</div>
+
+### 💡 Story-Driven Motivation
+> While recovering from an illness in 1946, mathematician Stanislaw Ulam played Solitaire. Instead of calculating winning odds by hand, he wondered: 'Why not play 100 games and count the wins?' Thus Monte Carlo was born.
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+mc_integrate(g = function(x) x^2, n = 10000, a = 0, b = 1)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? The code name 'Monte Carlo' was suggested by Nicholas Metropolis after Ulam's uncle who loved the Monaco casino!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+mc_integrate(g = function(x) x^2, n = 10000, a = 0, b = 1)
+```
+
+```{r practice-ex-solution}
+mc_integrate(g = function(x) x^2, n = 10000, a = 0, b = 1)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think Monte Carlo error scales as 1/N. (Wrong! By the Central Limit Theorem, error scales as 1/sqrt(N)).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("To reduce Monte Carlo standard error by a factor of 10, by how much must you increase the sample size N?",
+    answer("10 times", correct = ("10 times" == "100 times")),
+    answer("100 times", correct = ("100 times" == "100 times")),
+    answer("1,000 times", correct = ("1,000 times" == "100 times")),
+    answer("sqrt(10) times", correct = ("sqrt(10) times" == "100 times")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

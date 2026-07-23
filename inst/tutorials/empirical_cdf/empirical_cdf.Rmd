@@ -1,0 +1,108 @@
+---
+title: "Empirical CDF & Influence Functions"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟡 Track 2: Intermediate</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 15 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Empirical Distribution Functions & Order Statistics
+</div>
+
+### 💡 Story-Driven Motivation
+> When you have no theoretical model for a dataset, the Empirical CDF Fn(x) acts as the non-parametric maximum likelihood estimator of F.
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+plot(ecdf(financial_losses), main = 'Empirical CDF of Financial Losses')
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? The Glivenko-Cantelli theorem proves that Fn(x) converges uniformly to the true CDF F(x) with probability 1!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+plot(ecdf(financial_losses), main = 'Empirical CDF of Financial Losses')
+```
+
+```{r practice-ex-solution}
+plot(ecdf(financial_losses), main = 'Empirical CDF of Financial Losses')
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think Fn(x) is smooth. (Wrong! Fn(x) is a step function jumping by 1/n at each observed data point).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("By how much does the Empirical Cumulative Distribution Function Fn(x) step upward at each distinct data point in a sample of size n?",
+    answer("1 / n", correct = ("1 / n" == "1 / n")),
+    answer("1 / sqrt(n)", correct = ("1 / sqrt(n)" == "1 / n")),
+    answer("n / 100", correct = ("n / 100" == "1 / n")),
+    answer("0.5", correct = ("0.5" == "1 / n")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

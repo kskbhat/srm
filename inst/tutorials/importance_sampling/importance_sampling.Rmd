@@ -1,0 +1,108 @@
+---
+title: "Importance Sampling for Rare Events"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟡 Track 2: Intermediate</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 18 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Proposal Densities & Weight Ratios
+</div>
+
+### 💡 Story-Driven Motivation
+> NASA needs to estimate a 1-in-a-million structural failure probability. Ordinary Monte Carlo would require 100 million runs. Importance sampling shifts the proposal density g(x) to sample directly in the failure zone!
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+importance_sampling(h = function(x) x > 3, f = dnorm, g = function(x) dnorm(x, mean=3), rg = function(n) rnorm(n, mean=3), n = 5000)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Importance sampling is widely used in nuclear shielding simulations to track rare particle penetration!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+importance_sampling(h = function(x) x > 3, f = dnorm, g = function(x) dnorm(x, mean=3), rg = function(n) rnorm(n, mean=3), n = 5000)
+```
+
+```{r practice-ex-solution}
+importance_sampling(h = function(x) x > 3, f = dnorm, g = function(x) dnorm(x, mean=3), rg = function(n) rnorm(n, mean=3), n = 5000)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think importance weights w(x) = f(x)/g(x) should be as large as possible. (Wrong! Unbounded weights cause explosive variance).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("What is the theoretical optimal proposal density g*(x) that reduces importance sampling variance to ZERO?",
+    answer("g*(x) proportional to |h(x)| * f(x)", correct = ("g*(x) proportional to |h(x)| * f(x)" == "g*(x) proportional to |h(x)| * f(x)")),
+    answer("g*(x) = Uniform(0,1)", correct = ("g*(x) = Uniform(0,1)" == "g*(x) proportional to |h(x)| * f(x)")),
+    answer("g*(x) = Normal(0,1)", correct = ("g*(x) = Normal(0,1)" == "g*(x) proportional to |h(x)| * f(x)")),
+    answer("g*(x) = f(x)^2", correct = ("g*(x) = f(x)^2" == "g*(x) proportional to |h(x)| * f(x)")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

@@ -1,0 +1,108 @@
+---
+title: "Adaptive Metropolis (Haario et al.)"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🔴 Track 3: Advanced</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 20 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Covariance Adaptation & Ergodicity Preservation
+</div>
+
+### 💡 Story-Driven Motivation
+> Manually tuning proposal covariance matrices in 50 dimensions is painful. Haario's Adaptive Metropolis dynamically updates proposal covariance Sigma_n from past MCMC history while preserving ergodic stationarity!
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+adaptive_metropolis(target_log_density = function(x) -0.5 * sum(x^2), init = c(0,0), n_iter = 3000)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Diminishing adaptation ensures the chain remains ergodic even though updates depend on past history!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+adaptive_metropolis(target_log_density = function(x) -0.5 * sum(x^2), init = c(0,0), n_iter = 3000)
+```
+
+```{r practice-ex-solution}
+adaptive_metropolis(target_log_density = function(x) -0.5 * sum(x^2), init = c(0,0), n_iter = 3000)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually adapt without diminishing step sizes. (Uncontrolled adaptation violates Markov property and invalidates stationarity).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("What essential condition must adaptive MCMC satisfy so that the chain still converges to the correct target distribution?",
+    answer("Diminishing adaptation (adaptation steps shrink as n -> infinity)", correct = ("Diminishing adaptation (adaptation steps shrink as n -> infinity)" == "Diminishing adaptation (adaptation steps shrink as n -> infinity)")),
+    answer("Constant proposal SD", correct = ("Constant proposal SD" == "Diminishing adaptation (adaptation steps shrink as n -> infinity)")),
+    answer("Zero acceptance rate", correct = ("Zero acceptance rate" == "Diminishing adaptation (adaptation steps shrink as n -> infinity)")),
+    answer("Linear scaling", correct = ("Linear scaling" == "Diminishing adaptation (adaptation steps shrink as n -> infinity)")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

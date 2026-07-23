@@ -1,0 +1,108 @@
+---
+title: "Antithetic Variates"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟡 Track 2: Intermediate</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 12 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Negative Covariance Principles
+</div>
+
+### 💡 Story-Driven Motivation
+> Instead of drawing independent uniform numbers U1 and U2, pair U with its mirror reflection 1-U to balance out high and low outcomes!
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+antithetic_mc(g = function(x) exp(x), n = 5000)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Antithetic variates require zero extra random number generation—you get double the data for free!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+antithetic_mc(g = function(x) exp(x), n = 5000)
+```
+
+```{r practice-ex-solution}
+antithetic_mc(g = function(x) exp(x), n = 5000)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think antithetic sampling works on non-monotonic functions. (Wrong! If g(x) is symmetric, Cov(g(U), g(1-U)) can be positive).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("Why does evaluating (g(U) + g(1-U))/2 reduce variance compared to independent uniform draws?",
+    answer("Because Cov(g(U), g(1-U)) is negative for monotonic g", correct = ("Because Cov(g(U), g(1-U)) is negative for monotonic g" == "Because Cov(g(U), g(1-U)) is negative for monotonic g")),
+    answer("Because it doubles the sample size", correct = ("Because it doubles the sample size" == "Because Cov(g(U), g(1-U)) is negative for monotonic g")),
+    answer("Because 1-U is larger than U", correct = ("Because 1-U is larger than U" == "Because Cov(g(U), g(1-U)) is negative for monotonic g")),
+    answer("Because it eliminates bias", correct = ("Because it eliminates bias" == "Because Cov(g(U), g(1-U)) is negative for monotonic g")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

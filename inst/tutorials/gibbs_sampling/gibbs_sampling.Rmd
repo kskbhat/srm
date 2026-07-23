@@ -1,0 +1,108 @@
+---
+title: "Gibbs Sampling"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🔴 Track 3: Advanced</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 20 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Full Conditional Distributions
+</div>
+
+### 💡 Story-Driven Motivation
+> Instead of proposing multi-dimensional jumps, Gibbs sampling updates one variable at a time using its full conditional distribution pi(xi | x_-i) with a 100% acceptance rate!
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+gibbs_sampler(n_iter = 5000, rho = 0.8)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Gibbs sampling was named after physicist Josiah Willard Gibbs by brothers Stuart and Donald Geman in 1984!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+gibbs_sampler(n_iter = 5000, rho = 0.8)
+```
+
+```{r practice-ex-solution}
+gibbs_sampler(n_iter = 5000, rho = 0.8)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think Gibbs sampler steps can be rejected. (Wrong! Gibbs sampler acceptance ratio alpha is always identically 1).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("What is the acceptance probability alpha for candidate moves in a standard Gibbs sampler?",
+    answer("Always 1.0 (100% acceptance)", correct = ("Always 1.0 (100% acceptance)" == "Always 1.0 (100% acceptance)")),
+    answer("Depends on proposal SD", correct = ("Depends on proposal SD" == "Always 1.0 (100% acceptance)")),
+    answer("0.234", correct = ("0.234" == "Always 1.0 (100% acceptance)")),
+    answer("0.50", correct = ("0.50" == "Always 1.0 (100% acceptance)")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

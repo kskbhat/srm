@@ -1,0 +1,108 @@
+---
+title: "Control Variates Variance Reduction"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟡 Track 2: Intermediate</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 15 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Covariance & Correlation Coefficients
+</div>
+
+### 💡 Story-Driven Motivation
+> If you want to estimate an expensive integral g(X), pair it with a known easy integral h(X) (the control) to cancel out random noise!
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+control_variates(g = function(x) exp(x), h = function(x) x, mu_h = 0.5, n = 5000)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Financial engineers use control variates to price complex barrier options using simple European options as controls!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+control_variates(g = function(x) exp(x), h = function(x) x, mu_h = 0.5, n = 5000)
+```
+
+```{r practice-ex-solution}
+control_variates(g = function(x) exp(x), h = function(x) x, mu_h = 0.5, n = 5000)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think any control variate reduces variance. (Wrong! If correlation rho between g and h is 0, no variance reduction occurs).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("What determines the maximum percentage variance reduction achieved by a control variate h(X)?",
+    answer("The squared correlation rho^2 between g(X) and h(X)", correct = ("The squared correlation rho^2 between g(X) and h(X)" == "The squared correlation rho^2 between g(X) and h(X)")),
+    answer("The sample size N", correct = ("The sample size N" == "The squared correlation rho^2 between g(X) and h(X)")),
+    answer("The mean of g(X)", correct = ("The mean of g(X)" == "The squared correlation rho^2 between g(X) and h(X)")),
+    answer("The range of X", correct = ("The range of X" == "The squared correlation rho^2 between g(X) and h(X)")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>

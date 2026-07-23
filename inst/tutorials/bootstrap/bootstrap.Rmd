@@ -1,0 +1,108 @@
+---
+title: "Non-Parametric Bootstrap Resampling"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(srm)
+knitr::opts_chunk$set(echo = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Overview & Metadata
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 12px; margin-bottom: 15px;">
+<strong>🟢 Track 1: Essentials</strong><br/>
+⏱️ <strong>Estimated Time:</strong> ⏱️ 15 minutes<br/>
+📋 <strong>Prerequisites:</strong> ✓ Sampling Distributions & Standard Error
+</div>
+
+### 💡 Story-Driven Motivation
+> How do you calculate a 95% confidence interval for median patient hospital stay lengths when you don't know the underlying distribution? Pull yourself up by your own bootstraps!
+
+---
+
+## 🎮 Interactive Playground & Visual Exploration
+
+Experiment with the algorithm below! Change parameters and observe how the output responds:
+
+```{r demo-code, exercise=TRUE}
+library(srm)
+# Run exported srm function:
+bootstrap_ci(data = ehr_cohort$age, statistic = mean, R = 1000)
+```
+
+<div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
+<strong>💡 Did You Know?</strong><br/>
+Did You Know? Bradley Efron introduced the Bootstrap in 1979, revolutionizing applied statistics without assuming bell curves!
+</div>
+
+---
+
+## 🧠 Predict-First Checkpoint & Exercise
+
+Before running the code below, predict what will happen:
+
+```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
+# Try modifying the parameters below:
+bootstrap_ci(data = ehr_cohort$age, statistic = mean, R = 1000)
+```
+
+```{r practice-ex-solution}
+bootstrap_ci(data = ehr_cohort$age, statistic = mean, R = 1000)
+```
+
+```{r practice-ex-check}
+grade_this_code()
+```
+
+---
+
+## ⚠️ Common Student Mistakes
+
+<div style="background-color: #ffebe6; border-left: 5px solid #ff3300; padding: 12px; margin-bottom: 15px;">
+<strong>Common Pitfall:</strong><br/>
+Students usually think Bootstrap creates brand-new data points. (Wrong! It resamples your existing dataset with replacement).
+</div>
+
+---
+
+## 📖 Mathematical Derivation (Progressive Disclosure)
+
+<details>
+<summary><strong>Click to expand formal mathematical proof & derivations</strong></summary>
+
+### Mathematical Foundations
+For full theoretical proofs, refer to Chapter 1-5 of the course notes. The primary mathematical relations are evaluated numerically by `srm` package functions.
+</details>
+
+---
+
+## 📝 Concept Check Quiz
+
+```{r quiz-check}
+quiz(
+  question("In non-parametric bootstrap resampling of sample size n, how are bootstrap samples drawn from the original data?",
+    answer("With replacement, size n", correct = ("With replacement, size n" == "With replacement, size n")),
+    answer("Without replacement, size n/2", correct = ("Without replacement, size n/2" == "With replacement, size n")),
+    answer("Sorted by rank", correct = ("Sorted by rank" == "With replacement, size n")),
+    answer("From a Normal distribution", correct = ("From a Normal distribution" == "With replacement, size n")),
+    allow_retry = TRUE
+  )
+)
+```
+
+---
+
+## 🏁 Summary & Next Steps
+
+<div style="background-color: #e6ffe6; border-left: 5px solid #009933; padding: 12px;">
+<strong>3 Key Takeaways:</strong>
+1. Always understand the intuitive story before memorizing formulas.
+2. Tweak parameters and monitor visual diagnostics.
+3. Verify your results with R tests and package checks.
+</div>
