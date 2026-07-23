@@ -31,9 +31,27 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-multilevel_splitting(levels = c(2, 4, 6), n_particles = 1000)
+# Step-by-Step Multi-Level Splitting Rare Event Sampler from Scratch
+levels <- c(2, 4, 6) # Intermediate thresholds L1 < L2 < L3
+n_particles <- 1000
+
+prob_factors <- numeric(length(levels))
+current_particles <- rnorm(n_particles, mean = 0, sd = 1)
+
+for (k in 1:length(levels)) {
+  thresh <- levels[k]
+  survivors <- current_particles[current_particles >= thresh]
+  prob_factors[k] <- length(survivors) / length(current_particles)
+  
+  if (length(survivors) == 0) break
+  
+  # Resample surviving particles for next level
+  current_particles <- sample(survivors, size = n_particles, replace = TRUE) + rnorm(n_particles, sd = 0.5)
+}
+
+rare_prob_est <- prod(prob_factors)
+cat("Multi-Level Splitting Rare Event Probability P(X > 6):", rare_prob_est, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -66,12 +84,51 @@ Run <code>?multilevel_splitting</code> or <code>help(multilevel_splitting, packa
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-multilevel_splitting(levels = c(2, 4, 6), n_particles = 1000)
+# Step-by-Step Multi-Level Splitting Rare Event Sampler from Scratch
+levels <- c(2, 4, 6) # Intermediate thresholds L1 < L2 < L3
+n_particles <- 1000
+
+prob_factors <- numeric(length(levels))
+current_particles <- rnorm(n_particles, mean = 0, sd = 1)
+
+for (k in 1:length(levels)) {
+  thresh <- levels[k]
+  survivors <- current_particles[current_particles >= thresh]
+  prob_factors[k] <- length(survivors) / length(current_particles)
+  
+  if (length(survivors) == 0) break
+  
+  # Resample surviving particles for next level
+  current_particles <- sample(survivors, size = n_particles, replace = TRUE) + rnorm(n_particles, sd = 0.5)
+}
+
+rare_prob_est <- prod(prob_factors)
+cat("Multi-Level Splitting Rare Event Probability P(X > 6):", rare_prob_est, "
+")
 ```
 
 ```{r practice-ex-solution}
-multilevel_splitting(levels = c(2, 4, 6), n_particles = 1000)
+# Step-by-Step Multi-Level Splitting Rare Event Sampler from Scratch
+levels <- c(2, 4, 6) # Intermediate thresholds L1 < L2 < L3
+n_particles <- 1000
+
+prob_factors <- numeric(length(levels))
+current_particles <- rnorm(n_particles, mean = 0, sd = 1)
+
+for (k in 1:length(levels)) {
+  thresh <- levels[k]
+  survivors <- current_particles[current_particles >= thresh]
+  prob_factors[k] <- length(survivors) / length(current_particles)
+  
+  if (length(survivors) == 0) break
+  
+  # Resample surviving particles for next level
+  current_particles <- sample(survivors, size = n_particles, replace = TRUE) + rnorm(n_particles, sd = 0.5)
+}
+
+rare_prob_est <- prod(prob_factors)
+cat("Multi-Level Splitting Rare Event Probability P(X > 6):", rare_prob_est, "
+")
 ```
 
 ```{r practice-ex-check}

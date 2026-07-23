@@ -31,9 +31,33 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-metropolis_hastings(target_log_density = function(x) dnorm(x, log=TRUE), init = 0, n_iter = 5000, proposal_sd = 1)
+# Step-by-Step Random-Walk Metropolis-Hastings from Scratch
+n_iter <- 5000
+proposal_sd <- 1.0
+target_log <- function(x) dnorm(x, log = TRUE) # Target N(0,1)
+
+chain <- numeric(n_iter)
+accepted <- logical(n_iter)
+current <- 0 # Initial state x0
+
+for (i in 1:n_iter) {
+  # 1. Propose candidate y ~ N(current, proposal_sd^2)
+  candidate <- rnorm(1, mean = current, sd = proposal_sd)
+  
+  # 2. Compute log acceptance ratio ln alpha = log pi(y) - log pi(current)
+  log_alpha <- target_log(candidate) - target_log(current)
+  
+  # 3. Accept or reject decision
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+    accepted[i] <- TRUE
+  }
+  chain[i] <- current
+}
+
+cat("Acceptance Rate:", mean(accepted), "
+")
+plot(chain, type = "l", col = "steelblue", main = "MCMC Trace Plot")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -68,12 +92,63 @@ Run <code>?metropolis_hastings</code> or <code>help(metropolis_hastings, package
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-metropolis_hastings(target_log_density = function(x) dnorm(x, log=TRUE), init = 0, n_iter = 5000, proposal_sd = 1)
+# Step-by-Step Random-Walk Metropolis-Hastings from Scratch
+n_iter <- 5000
+proposal_sd <- 1.0
+target_log <- function(x) dnorm(x, log = TRUE) # Target N(0,1)
+
+chain <- numeric(n_iter)
+accepted <- logical(n_iter)
+current <- 0 # Initial state x0
+
+for (i in 1:n_iter) {
+  # 1. Propose candidate y ~ N(current, proposal_sd^2)
+  candidate <- rnorm(1, mean = current, sd = proposal_sd)
+  
+  # 2. Compute log acceptance ratio ln alpha = log pi(y) - log pi(current)
+  log_alpha <- target_log(candidate) - target_log(current)
+  
+  # 3. Accept or reject decision
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+    accepted[i] <- TRUE
+  }
+  chain[i] <- current
+}
+
+cat("Acceptance Rate:", mean(accepted), "
+")
+plot(chain, type = "l", col = "steelblue", main = "MCMC Trace Plot")
 ```
 
 ```{r practice-ex-solution}
-metropolis_hastings(target_log_density = function(x) dnorm(x, log=TRUE), init = 0, n_iter = 5000, proposal_sd = 1)
+# Step-by-Step Random-Walk Metropolis-Hastings from Scratch
+n_iter <- 5000
+proposal_sd <- 1.0
+target_log <- function(x) dnorm(x, log = TRUE) # Target N(0,1)
+
+chain <- numeric(n_iter)
+accepted <- logical(n_iter)
+current <- 0 # Initial state x0
+
+for (i in 1:n_iter) {
+  # 1. Propose candidate y ~ N(current, proposal_sd^2)
+  candidate <- rnorm(1, mean = current, sd = proposal_sd)
+  
+  # 2. Compute log acceptance ratio ln alpha = log pi(y) - log pi(current)
+  log_alpha <- target_log(candidate) - target_log(current)
+  
+  # 3. Accept or reject decision
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+    accepted[i] <- TRUE
+  }
+  chain[i] <- current
+}
+
+cat("Acceptance Rate:", mean(accepted), "
+")
+plot(chain, type = "l", col = "steelblue", main = "MCMC Trace Plot")
 ```
 
 ```{r practice-ex-check}

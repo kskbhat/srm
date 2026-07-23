@@ -31,9 +31,28 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-mc_integrate(g = function(x) x^2, n = 10000, a = 0, b = 1)
+# Step-by-Step Raw Monte Carlo Integration of g(x) = x^2 from Scratch
+n <- 10000
+a <- 0
+b <- 1
+
+# 1. Draw uniform samples U ~ Unif(a, b)
+u <- runif(n, min = a, max = b)
+
+# 2. Evaluate integrand g(u)
+evals <- (b - a) * (u^2)
+
+# 3. Compute Monte Carlo Estimate & Standard Error
+mc_est <- mean(evals)
+mc_se <- sd(evals) / sqrt(n)
+ci_95 <- c(mc_est - 1.96 * mc_se, mc_est + 1.96 * mc_se)
+
+cat("Monte Carlo Estimate:", mc_est, "
+")
+cat("Standard Error:", mc_se, "
+")
+cat("95% CI:", ci_95, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -68,12 +87,53 @@ Run <code>?mc_integrate</code> or <code>help(mc_integrate, package = "srm")</cod
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-mc_integrate(g = function(x) x^2, n = 10000, a = 0, b = 1)
+# Step-by-Step Raw Monte Carlo Integration of g(x) = x^2 from Scratch
+n <- 10000
+a <- 0
+b <- 1
+
+# 1. Draw uniform samples U ~ Unif(a, b)
+u <- runif(n, min = a, max = b)
+
+# 2. Evaluate integrand g(u)
+evals <- (b - a) * (u^2)
+
+# 3. Compute Monte Carlo Estimate & Standard Error
+mc_est <- mean(evals)
+mc_se <- sd(evals) / sqrt(n)
+ci_95 <- c(mc_est - 1.96 * mc_se, mc_est + 1.96 * mc_se)
+
+cat("Monte Carlo Estimate:", mc_est, "
+")
+cat("Standard Error:", mc_se, "
+")
+cat("95% CI:", ci_95, "
+")
 ```
 
 ```{r practice-ex-solution}
-mc_integrate(g = function(x) x^2, n = 10000, a = 0, b = 1)
+# Step-by-Step Raw Monte Carlo Integration of g(x) = x^2 from Scratch
+n <- 10000
+a <- 0
+b <- 1
+
+# 1. Draw uniform samples U ~ Unif(a, b)
+u <- runif(n, min = a, max = b)
+
+# 2. Evaluate integrand g(u)
+evals <- (b - a) * (u^2)
+
+# 3. Compute Monte Carlo Estimate & Standard Error
+mc_est <- mean(evals)
+mc_se <- sd(evals) / sqrt(n)
+ci_95 <- c(mc_est - 1.96 * mc_se, mc_est + 1.96 * mc_se)
+
+cat("Monte Carlo Estimate:", mc_est, "
+")
+cat("Standard Error:", mc_se, "
+")
+cat("95% CI:", ci_95, "
+")
 ```
 
 ```{r practice-ex-check}

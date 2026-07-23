@@ -31,9 +31,35 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-accept_reject_beta(n = 500, shape1 = 2, shape2 = 5)
+# Step-by-Step Accept-Reject Sampler for Beta(2, 5) from Scratch
+n_target <- 500
+shape1 <- 2
+shape2 <- 5
+
+# Compute bounding constant c = max f(x)
+mode_x <- (shape1 - 1) / (shape1 + shape2 - 2)
+c_envelope <- dbeta(mode_x, shape1, shape2)
+
+samples <- numeric(n_target)
+count <- 0
+attempts <- 0
+
+while (count < n_target) {
+  attempts <- attempts + 1
+  y <- runif(1) # Proposal candidate from Unif(0,1)
+  u <- runif(1) # Decision uniform draw
+  
+  # Acceptance decision condition: U <= f(y) / (c * g(y))
+  if (u <= dbeta(y, shape1, shape2) / c_envelope) {
+    count <- count + 1
+    samples[count] <- y
+  }
+}
+
+cat("Acceptance Efficiency:", count / attempts, "
+")
+hist(samples, probability = TRUE, main = "Accept-Reject Beta(2,5) Samples")
+curve(dbeta(x, shape1, shape2), add = TRUE, col = "red", lwd = 2)
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -67,12 +93,67 @@ Run <code>?accept_reject_beta</code> or <code>help(accept_reject_beta, package =
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-accept_reject_beta(n = 500, shape1 = 2, shape2 = 5)
+# Step-by-Step Accept-Reject Sampler for Beta(2, 5) from Scratch
+n_target <- 500
+shape1 <- 2
+shape2 <- 5
+
+# Compute bounding constant c = max f(x)
+mode_x <- (shape1 - 1) / (shape1 + shape2 - 2)
+c_envelope <- dbeta(mode_x, shape1, shape2)
+
+samples <- numeric(n_target)
+count <- 0
+attempts <- 0
+
+while (count < n_target) {
+  attempts <- attempts + 1
+  y <- runif(1) # Proposal candidate from Unif(0,1)
+  u <- runif(1) # Decision uniform draw
+  
+  # Acceptance decision condition: U <= f(y) / (c * g(y))
+  if (u <= dbeta(y, shape1, shape2) / c_envelope) {
+    count <- count + 1
+    samples[count] <- y
+  }
+}
+
+cat("Acceptance Efficiency:", count / attempts, "
+")
+hist(samples, probability = TRUE, main = "Accept-Reject Beta(2,5) Samples")
+curve(dbeta(x, shape1, shape2), add = TRUE, col = "red", lwd = 2)
 ```
 
 ```{r practice-ex-solution}
-accept_reject_beta(n = 500, shape1 = 2, shape2 = 5)
+# Step-by-Step Accept-Reject Sampler for Beta(2, 5) from Scratch
+n_target <- 500
+shape1 <- 2
+shape2 <- 5
+
+# Compute bounding constant c = max f(x)
+mode_x <- (shape1 - 1) / (shape1 + shape2 - 2)
+c_envelope <- dbeta(mode_x, shape1, shape2)
+
+samples <- numeric(n_target)
+count <- 0
+attempts <- 0
+
+while (count < n_target) {
+  attempts <- attempts + 1
+  y <- runif(1) # Proposal candidate from Unif(0,1)
+  u <- runif(1) # Decision uniform draw
+  
+  # Acceptance decision condition: U <= f(y) / (c * g(y))
+  if (u <= dbeta(y, shape1, shape2) / c_envelope) {
+    count <- count + 1
+    samples[count] <- y
+  }
+}
+
+cat("Acceptance Efficiency:", count / attempts, "
+")
+hist(samples, probability = TRUE, main = "Accept-Reject Beta(2,5) Samples")
+curve(dbeta(x, shape1, shape2), add = TRUE, col = "red", lwd = 2)
 ```
 
 ```{r practice-ex-check}

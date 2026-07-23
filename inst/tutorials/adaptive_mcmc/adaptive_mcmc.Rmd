@@ -31,9 +31,36 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-adaptive_metropolis(target_log_density = function(x) -0.5 * sum(x^2), init = c(0,0), n_iter = 3000)
+# Step-by-Step Haario Adaptive Metropolis MCMC from Scratch
+n_iter <- 3000
+t0 <- 100 # Adaptation start iteration
+
+# Target: 2D Gaussian N(0, I)
+target_log_density <- function(x) -0.5 * sum(x^2)
+
+mat <- matrix(0, nrow = n_iter, ncol = 2)
+mat[1, ] <- c(0, 0) # x0
+cov_matrix <- diag(0.1, 2)
+sd_factor <- (2.4^2) / 2
+
+for (t in 2:n_iter) {
+  current <- mat[t - 1, ]
+  
+  # Dynamically adapt proposal covariance matrix after t0
+  if (t > t0) {
+    cov_matrix <- sd_factor * (cov(mat[1:(t - 1), , drop = FALSE]) + diag(1e-5, 2))
+  }
+  
+  candidate <- current + MASS::mvrnorm(1, mu = c(0, 0), Sigma = cov_matrix)
+  
+  log_alpha <- target_log_density(candidate) - target_log_density(current)
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+  }
+  mat[t, ] <- current
+}
+
+plot(mat, type = "l", col = rgb(0,0,1,0.3), main = "Adaptive Metropolis Trajectory")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -68,12 +95,69 @@ Run <code>?adaptive_metropolis</code> or <code>help(adaptive_metropolis, package
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-adaptive_metropolis(target_log_density = function(x) -0.5 * sum(x^2), init = c(0,0), n_iter = 3000)
+# Step-by-Step Haario Adaptive Metropolis MCMC from Scratch
+n_iter <- 3000
+t0 <- 100 # Adaptation start iteration
+
+# Target: 2D Gaussian N(0, I)
+target_log_density <- function(x) -0.5 * sum(x^2)
+
+mat <- matrix(0, nrow = n_iter, ncol = 2)
+mat[1, ] <- c(0, 0) # x0
+cov_matrix <- diag(0.1, 2)
+sd_factor <- (2.4^2) / 2
+
+for (t in 2:n_iter) {
+  current <- mat[t - 1, ]
+  
+  # Dynamically adapt proposal covariance matrix after t0
+  if (t > t0) {
+    cov_matrix <- sd_factor * (cov(mat[1:(t - 1), , drop = FALSE]) + diag(1e-5, 2))
+  }
+  
+  candidate <- current + MASS::mvrnorm(1, mu = c(0, 0), Sigma = cov_matrix)
+  
+  log_alpha <- target_log_density(candidate) - target_log_density(current)
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+  }
+  mat[t, ] <- current
+}
+
+plot(mat, type = "l", col = rgb(0,0,1,0.3), main = "Adaptive Metropolis Trajectory")
 ```
 
 ```{r practice-ex-solution}
-adaptive_metropolis(target_log_density = function(x) -0.5 * sum(x^2), init = c(0,0), n_iter = 3000)
+# Step-by-Step Haario Adaptive Metropolis MCMC from Scratch
+n_iter <- 3000
+t0 <- 100 # Adaptation start iteration
+
+# Target: 2D Gaussian N(0, I)
+target_log_density <- function(x) -0.5 * sum(x^2)
+
+mat <- matrix(0, nrow = n_iter, ncol = 2)
+mat[1, ] <- c(0, 0) # x0
+cov_matrix <- diag(0.1, 2)
+sd_factor <- (2.4^2) / 2
+
+for (t in 2:n_iter) {
+  current <- mat[t - 1, ]
+  
+  # Dynamically adapt proposal covariance matrix after t0
+  if (t > t0) {
+    cov_matrix <- sd_factor * (cov(mat[1:(t - 1), , drop = FALSE]) + diag(1e-5, 2))
+  }
+  
+  candidate <- current + MASS::mvrnorm(1, mu = c(0, 0), Sigma = cov_matrix)
+  
+  log_alpha <- target_log_density(candidate) - target_log_density(current)
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+  }
+  mat[t, ] <- current
+}
+
+plot(mat, type = "l", col = rgb(0,0,1,0.3), main = "Adaptive Metropolis Trajectory")
 ```
 
 ```{r practice-ex-check}

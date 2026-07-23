@@ -31,9 +31,22 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-score_function_gradient(h = function(x) x, theta = 1, n = 5000)
+# Step-by-Step Score Function Gradient Estimator from Scratch
+n <- 5000
+theta <- 1.0 # Parameter theta
+h_payoff <- function(x) x # Objective reward H(X)
+
+# 1. Draw samples X ~ N(theta, 1)
+x <- rnorm(n, mean = theta, sd = 1)
+
+# 2. Compute score function: S(x) = d/d_theta ln f(x; theta) = (x - theta)
+score <- (x - theta)
+
+# 3. Policy gradient estimate: E[ H(X) * S(X) ]
+grad_est <- mean(h_payoff(x) * score)
+
+cat("Estimated Gradient d/d_theta E[H(X)]:", grad_est, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -67,12 +80,41 @@ Run <code>?score_function_gradient</code> or <code>help(score_function_gradient,
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-score_function_gradient(h = function(x) x, theta = 1, n = 5000)
+# Step-by-Step Score Function Gradient Estimator from Scratch
+n <- 5000
+theta <- 1.0 # Parameter theta
+h_payoff <- function(x) x # Objective reward H(X)
+
+# 1. Draw samples X ~ N(theta, 1)
+x <- rnorm(n, mean = theta, sd = 1)
+
+# 2. Compute score function: S(x) = d/d_theta ln f(x; theta) = (x - theta)
+score <- (x - theta)
+
+# 3. Policy gradient estimate: E[ H(X) * S(X) ]
+grad_est <- mean(h_payoff(x) * score)
+
+cat("Estimated Gradient d/d_theta E[H(X)]:", grad_est, "
+")
 ```
 
 ```{r practice-ex-solution}
-score_function_gradient(h = function(x) x, theta = 1, n = 5000)
+# Step-by-Step Score Function Gradient Estimator from Scratch
+n <- 5000
+theta <- 1.0 # Parameter theta
+h_payoff <- function(x) x # Objective reward H(X)
+
+# 1. Draw samples X ~ N(theta, 1)
+x <- rnorm(n, mean = theta, sd = 1)
+
+# 2. Compute score function: S(x) = d/d_theta ln f(x; theta) = (x - theta)
+score <- (x - theta)
+
+# 3. Policy gradient estimate: E[ H(X) * S(X) ]
+grad_est <- mean(h_payoff(x) * score)
+
+cat("Estimated Gradient d/d_theta E[H(X)]:", grad_est, "
+")
 ```
 
 ```{r practice-ex-check}

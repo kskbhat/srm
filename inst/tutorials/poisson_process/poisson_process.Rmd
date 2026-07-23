@@ -31,9 +31,26 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-sim_poisson_process(T_max = 10, rate = 2)
+# Step-by-Step Homogeneous Poisson Process Simulation from Scratch
+T_max <- 10
+rate_lambda <- 2
+
+arrival_times <- c()
+current_time <- 0
+
+# Generate inter-arrival times dt ~ Exp(lambda) until T_max
+while (current_time < T_max) {
+  u <- runif(1)
+  dt <- -log(1 - u) / rate_lambda
+  current_time <- current_time + dt
+  if (current_time <= T_max) {
+    arrival_times <- c(arrival_times, current_time)
+  }
+}
+
+cat("Total Events in T = 10:", length(arrival_times), "
+")
+plot(arrival_times, 1:length(arrival_times), type = "s", xlab = "Time", ylab = "Event Count", main = "Poisson Arrival Process N(t)")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -66,12 +83,49 @@ Run <code>?sim_poisson_process</code> or <code>help(sim_poisson_process, package
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-sim_poisson_process(T_max = 10, rate = 2)
+# Step-by-Step Homogeneous Poisson Process Simulation from Scratch
+T_max <- 10
+rate_lambda <- 2
+
+arrival_times <- c()
+current_time <- 0
+
+# Generate inter-arrival times dt ~ Exp(lambda) until T_max
+while (current_time < T_max) {
+  u <- runif(1)
+  dt <- -log(1 - u) / rate_lambda
+  current_time <- current_time + dt
+  if (current_time <= T_max) {
+    arrival_times <- c(arrival_times, current_time)
+  }
+}
+
+cat("Total Events in T = 10:", length(arrival_times), "
+")
+plot(arrival_times, 1:length(arrival_times), type = "s", xlab = "Time", ylab = "Event Count", main = "Poisson Arrival Process N(t)")
 ```
 
 ```{r practice-ex-solution}
-sim_poisson_process(T_max = 10, rate = 2)
+# Step-by-Step Homogeneous Poisson Process Simulation from Scratch
+T_max <- 10
+rate_lambda <- 2
+
+arrival_times <- c()
+current_time <- 0
+
+# Generate inter-arrival times dt ~ Exp(lambda) until T_max
+while (current_time < T_max) {
+  u <- runif(1)
+  dt <- -log(1 - u) / rate_lambda
+  current_time <- current_time + dt
+  if (current_time <= T_max) {
+    arrival_times <- c(arrival_times, current_time)
+  }
+}
+
+cat("Total Events in T = 10:", length(arrival_times), "
+")
+plot(arrival_times, 1:length(arrival_times), type = "s", xlab = "Time", ylab = "Event Count", main = "Poisson Arrival Process N(t)")
 ```
 
 ```{r practice-ex-check}

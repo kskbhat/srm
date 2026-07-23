@@ -31,9 +31,37 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-cftp_perfect_sampler(max_lookback = 100)
+# Step-by-Step Coupling From The Past (CFTP) Monotonic Sampler from Scratch
+max_lookback <- 64
+t_back <- 1
+coalesced <- FALSE
+final_state <- NA
+
+while (!coalesced && t_back <= max_lookback) {
+  # Fixed random draws for this backward horizon
+  u_randoms <- runif(t_back)
+  
+  state_low <- 0
+  state_high <- 1
+  
+  for (step in 1:t_back) {
+    u <- u_randoms[step]
+    state_low <- ifelse(u < 0.5, max(0, state_low - 1), min(1, state_low + 1))
+    state_high <- ifelse(u < 0.5, max(0, state_high - 1), min(1, state_high + 1))
+  }
+  
+  if (state_low == state_high) {
+    coalesced <- TRUE
+    final_state <- state_low
+  } else {
+    t_back <- t_back * 2
+  }
+}
+
+cat("Coalesced:", coalesced, "at lookback time T =", t_back, "
+")
+cat("Exact Exact Sample Value:", final_state, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -65,12 +93,71 @@ Run <code>?cftp_perfect_sampler</code> or <code>help(cftp_perfect_sampler, packa
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-cftp_perfect_sampler(max_lookback = 100)
+# Step-by-Step Coupling From The Past (CFTP) Monotonic Sampler from Scratch
+max_lookback <- 64
+t_back <- 1
+coalesced <- FALSE
+final_state <- NA
+
+while (!coalesced && t_back <= max_lookback) {
+  # Fixed random draws for this backward horizon
+  u_randoms <- runif(t_back)
+  
+  state_low <- 0
+  state_high <- 1
+  
+  for (step in 1:t_back) {
+    u <- u_randoms[step]
+    state_low <- ifelse(u < 0.5, max(0, state_low - 1), min(1, state_low + 1))
+    state_high <- ifelse(u < 0.5, max(0, state_high - 1), min(1, state_high + 1))
+  }
+  
+  if (state_low == state_high) {
+    coalesced <- TRUE
+    final_state <- state_low
+  } else {
+    t_back <- t_back * 2
+  }
+}
+
+cat("Coalesced:", coalesced, "at lookback time T =", t_back, "
+")
+cat("Exact Exact Sample Value:", final_state, "
+")
 ```
 
 ```{r practice-ex-solution}
-cftp_perfect_sampler(max_lookback = 100)
+# Step-by-Step Coupling From The Past (CFTP) Monotonic Sampler from Scratch
+max_lookback <- 64
+t_back <- 1
+coalesced <- FALSE
+final_state <- NA
+
+while (!coalesced && t_back <= max_lookback) {
+  # Fixed random draws for this backward horizon
+  u_randoms <- runif(t_back)
+  
+  state_low <- 0
+  state_high <- 1
+  
+  for (step in 1:t_back) {
+    u <- u_randoms[step]
+    state_low <- ifelse(u < 0.5, max(0, state_low - 1), min(1, state_low + 1))
+    state_high <- ifelse(u < 0.5, max(0, state_high - 1), min(1, state_high + 1))
+  }
+  
+  if (state_low == state_high) {
+    coalesced <- TRUE
+    final_state <- state_low
+  } else {
+    t_back <- t_back * 2
+  }
+}
+
+cat("Coalesced:", coalesced, "at lookback time T =", t_back, "
+")
+cat("Exact Exact Sample Value:", final_state, "
+")
 ```
 
 ```{r practice-ex-check}

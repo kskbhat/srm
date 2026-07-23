@@ -31,9 +31,23 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-antithetic_mc(g = function(x) exp(x), n = 5000)
+# Step-by-Step Antithetic Variates from Scratch
+n_pairs <- 2500 # 2500 pairs = 5000 evaluations
+g <- function(x) exp(x)
+
+u <- runif(n_pairs)
+# Pair U with mirror 1 - U
+pair_evals <- (g(u) + g(1 - u)) / 2
+
+u_raw <- runif(5000)
+raw_evals <- g(u_raw)
+
+cat("Antithetic Estimate:", mean(pair_evals), " (Var:", var(pair_evals), ")
+")
+cat("Raw MC Estimate:", mean(raw_evals), " (Var:", var(raw_evals), ")
+")
+cat("Variance Reduction:", round(100 * (1 - var(pair_evals)/var(raw_evals)), 2), "%
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -66,12 +80,43 @@ Run <code>?antithetic_mc</code> or <code>help(antithetic_mc, package = "srm")</c
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-antithetic_mc(g = function(x) exp(x), n = 5000)
+# Step-by-Step Antithetic Variates from Scratch
+n_pairs <- 2500 # 2500 pairs = 5000 evaluations
+g <- function(x) exp(x)
+
+u <- runif(n_pairs)
+# Pair U with mirror 1 - U
+pair_evals <- (g(u) + g(1 - u)) / 2
+
+u_raw <- runif(5000)
+raw_evals <- g(u_raw)
+
+cat("Antithetic Estimate:", mean(pair_evals), " (Var:", var(pair_evals), ")
+")
+cat("Raw MC Estimate:", mean(raw_evals), " (Var:", var(raw_evals), ")
+")
+cat("Variance Reduction:", round(100 * (1 - var(pair_evals)/var(raw_evals)), 2), "%
+")
 ```
 
 ```{r practice-ex-solution}
-antithetic_mc(g = function(x) exp(x), n = 5000)
+# Step-by-Step Antithetic Variates from Scratch
+n_pairs <- 2500 # 2500 pairs = 5000 evaluations
+g <- function(x) exp(x)
+
+u <- runif(n_pairs)
+# Pair U with mirror 1 - U
+pair_evals <- (g(u) + g(1 - u)) / 2
+
+u_raw <- runif(5000)
+raw_evals <- g(u_raw)
+
+cat("Antithetic Estimate:", mean(pair_evals), " (Var:", var(pair_evals), ")
+")
+cat("Raw MC Estimate:", mean(raw_evals), " (Var:", var(raw_evals), ")
+")
+cat("Variance Reduction:", round(100 * (1 - var(pair_evals)/var(raw_evals)), 2), "%
+")
 ```
 
 ```{r practice-ex-check}

@@ -31,9 +31,29 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-importance_sampling(h = function(x) x > 3, f = dnorm, g = function(x) dnorm(x, mean=3), rg = function(n) rnorm(n, mean=3), n = 5000)
+# Step-by-Step Importance Sampling for Rare Event (X > 3) from Scratch
+n <- 5000
+# Target density f(x) = N(0,1)
+# Proposal density g(x) = N(3,1) centered at rare event tail
+target_f <- function(x) dnorm(x, mean = 0, sd = 1)
+proposal_g <- function(x) dnorm(x, mean = 3, sd = 1)
+
+# Draw candidates from proposal g(x)
+x_proposal <- rnorm(n, mean = 3, sd = 1)
+
+# Compute importance weights w(x) = f(x) / g(x)
+w <- target_f(x_proposal) / proposal_g(x_proposal)
+evals <- (x_proposal > 3) * w
+
+is_estimate <- mean(evals)
+is_se <- sd(evals) / sqrt(n)
+
+cat("True P(X > 3):", 1 - pnorm(3), "
+")
+cat("Importance Sampling Estimate:", is_estimate, "
+")
+cat("Standard Error:", is_se, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -69,12 +89,55 @@ Run <code>?importance_sampling</code> or <code>help(importance_sampling, package
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-importance_sampling(h = function(x) x > 3, f = dnorm, g = function(x) dnorm(x, mean=3), rg = function(n) rnorm(n, mean=3), n = 5000)
+# Step-by-Step Importance Sampling for Rare Event (X > 3) from Scratch
+n <- 5000
+# Target density f(x) = N(0,1)
+# Proposal density g(x) = N(3,1) centered at rare event tail
+target_f <- function(x) dnorm(x, mean = 0, sd = 1)
+proposal_g <- function(x) dnorm(x, mean = 3, sd = 1)
+
+# Draw candidates from proposal g(x)
+x_proposal <- rnorm(n, mean = 3, sd = 1)
+
+# Compute importance weights w(x) = f(x) / g(x)
+w <- target_f(x_proposal) / proposal_g(x_proposal)
+evals <- (x_proposal > 3) * w
+
+is_estimate <- mean(evals)
+is_se <- sd(evals) / sqrt(n)
+
+cat("True P(X > 3):", 1 - pnorm(3), "
+")
+cat("Importance Sampling Estimate:", is_estimate, "
+")
+cat("Standard Error:", is_se, "
+")
 ```
 
 ```{r practice-ex-solution}
-importance_sampling(h = function(x) x > 3, f = dnorm, g = function(x) dnorm(x, mean=3), rg = function(n) rnorm(n, mean=3), n = 5000)
+# Step-by-Step Importance Sampling for Rare Event (X > 3) from Scratch
+n <- 5000
+# Target density f(x) = N(0,1)
+# Proposal density g(x) = N(3,1) centered at rare event tail
+target_f <- function(x) dnorm(x, mean = 0, sd = 1)
+proposal_g <- function(x) dnorm(x, mean = 3, sd = 1)
+
+# Draw candidates from proposal g(x)
+x_proposal <- rnorm(n, mean = 3, sd = 1)
+
+# Compute importance weights w(x) = f(x) / g(x)
+w <- target_f(x_proposal) / proposal_g(x_proposal)
+evals <- (x_proposal > 3) * w
+
+is_estimate <- mean(evals)
+is_se <- sd(evals) / sqrt(n)
+
+cat("True P(X > 3):", 1 - pnorm(3), "
+")
+cat("Importance Sampling Estimate:", is_estimate, "
+")
+cat("Standard Error:", is_se, "
+")
 ```
 
 ```{r practice-ex-check}

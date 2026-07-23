@@ -31,9 +31,25 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-calc_sample_size(p = 0.5, d = 0.05, conf_level = 0.95)
+# Step-by-Step Sample Size Calculation for Proportion from Scratch
+p <- 0.5       # Anticipated population proportion
+d <- 0.05      # Margin of error (precision bound)
+conf <- 0.95   # Confidence level
+
+# Calculate Z-score for 95% confidence (Z = 1.96)
+alpha <- 1 - conf
+z_score <- qnorm(1 - alpha / 2)
+
+# Apply formula: n = (Z^2 * p * (1 - p)) / d^2
+n_raw <- (z_score^2 * p * (1 - p)) / (d^2)
+n_final <- ceiling(n_raw) # Round up to whole integer
+
+cat("Z-score:", z_score, "
+")
+cat("Exact required n:", n_raw, "
+")
+cat("Final sample size (rounded up):", n_final, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -67,12 +83,47 @@ Run <code>?calc_sample_size</code> or <code>help(calc_sample_size, package = "sr
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-calc_sample_size(p = 0.5, d = 0.05, conf_level = 0.95)
+# Step-by-Step Sample Size Calculation for Proportion from Scratch
+p <- 0.5       # Anticipated population proportion
+d <- 0.05      # Margin of error (precision bound)
+conf <- 0.95   # Confidence level
+
+# Calculate Z-score for 95% confidence (Z = 1.96)
+alpha <- 1 - conf
+z_score <- qnorm(1 - alpha / 2)
+
+# Apply formula: n = (Z^2 * p * (1 - p)) / d^2
+n_raw <- (z_score^2 * p * (1 - p)) / (d^2)
+n_final <- ceiling(n_raw) # Round up to whole integer
+
+cat("Z-score:", z_score, "
+")
+cat("Exact required n:", n_raw, "
+")
+cat("Final sample size (rounded up):", n_final, "
+")
 ```
 
 ```{r practice-ex-solution}
-calc_sample_size(p = 0.5, d = 0.05, conf_level = 0.95)
+# Step-by-Step Sample Size Calculation for Proportion from Scratch
+p <- 0.5       # Anticipated population proportion
+d <- 0.05      # Margin of error (precision bound)
+conf <- 0.95   # Confidence level
+
+# Calculate Z-score for 95% confidence (Z = 1.96)
+alpha <- 1 - conf
+z_score <- qnorm(1 - alpha / 2)
+
+# Apply formula: n = (Z^2 * p * (1 - p)) / d^2
+n_raw <- (z_score^2 * p * (1 - p)) / (d^2)
+n_final <- ceiling(n_raw) # Round up to whole integer
+
+cat("Z-score:", z_score, "
+")
+cat("Exact required n:", n_raw, "
+")
+cat("Final sample size (rounded up):", n_final, "
+")
 ```
 
 ```{r practice-ex-check}

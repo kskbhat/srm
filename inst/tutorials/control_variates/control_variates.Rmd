@@ -31,9 +31,29 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-control_variates(g = function(x) exp(x), h = function(x) x, mu_h = 0.5, n = 5000)
+# Step-by-Step Control Variates Integration from Scratch
+n <- 5000
+# Target: g(X) = exp(X), true integral = e - 1 ~ 1.71828
+g <- function(x) exp(x)
+
+# Control: h(X) = X, known mean E[h(X)] = 0.5
+h <- function(x) x
+mu_h <- 0.5
+
+u <- runif(n)
+g_vals <- g(u)
+h_vals <- h(u)
+
+# Optimal coefficient c* = - Cov(g, h) / Var(h)
+c_star <- - cov(g_vals, h_vals) / var(h_vals)
+g_cv <- g_vals + c_star * (h_vals - mu_h)
+
+cat("Raw MC Estimate:", mean(g_vals), " (Var:", var(g_vals), ")
+")
+cat("Control Variate Estimate:", mean(g_cv), " (Var:", var(g_cv), ")
+")
+cat("Variance Reduction:", round(100 * (1 - var(g_cv)/var(g_vals)), 2), "%
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -68,12 +88,55 @@ Run <code>?control_variates</code> or <code>help(control_variates, package = "sr
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-control_variates(g = function(x) exp(x), h = function(x) x, mu_h = 0.5, n = 5000)
+# Step-by-Step Control Variates Integration from Scratch
+n <- 5000
+# Target: g(X) = exp(X), true integral = e - 1 ~ 1.71828
+g <- function(x) exp(x)
+
+# Control: h(X) = X, known mean E[h(X)] = 0.5
+h <- function(x) x
+mu_h <- 0.5
+
+u <- runif(n)
+g_vals <- g(u)
+h_vals <- h(u)
+
+# Optimal coefficient c* = - Cov(g, h) / Var(h)
+c_star <- - cov(g_vals, h_vals) / var(h_vals)
+g_cv <- g_vals + c_star * (h_vals - mu_h)
+
+cat("Raw MC Estimate:", mean(g_vals), " (Var:", var(g_vals), ")
+")
+cat("Control Variate Estimate:", mean(g_cv), " (Var:", var(g_cv), ")
+")
+cat("Variance Reduction:", round(100 * (1 - var(g_cv)/var(g_vals)), 2), "%
+")
 ```
 
 ```{r practice-ex-solution}
-control_variates(g = function(x) exp(x), h = function(x) x, mu_h = 0.5, n = 5000)
+# Step-by-Step Control Variates Integration from Scratch
+n <- 5000
+# Target: g(X) = exp(X), true integral = e - 1 ~ 1.71828
+g <- function(x) exp(x)
+
+# Control: h(X) = X, known mean E[h(X)] = 0.5
+h <- function(x) x
+mu_h <- 0.5
+
+u <- runif(n)
+g_vals <- g(u)
+h_vals <- h(u)
+
+# Optimal coefficient c* = - Cov(g, h) / Var(h)
+c_star <- - cov(g_vals, h_vals) / var(h_vals)
+g_cv <- g_vals + c_star * (h_vals - mu_h)
+
+cat("Raw MC Estimate:", mean(g_vals), " (Var:", var(g_vals), ")
+")
+cat("Control Variate Estimate:", mean(g_cv), " (Var:", var(g_cv), ")
+")
+cat("Variance Reduction:", round(100 * (1 - var(g_cv)/var(g_vals)), 2), "%
+")
 ```
 
 ```{r practice-ex-check}

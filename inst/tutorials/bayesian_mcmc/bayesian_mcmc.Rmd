@@ -31,10 +31,32 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-# Bayesian Posterior Sampling with Metropolis-Hastings
-metropolis_hastings(function(th) dnorm(th, log=TRUE) + sum(dnorm(ehr_cohort$age, mean=th, sd=10, log=TRUE)), init=50)
+# Step-by-Step Bayesian Posterior MCMC Sampler from Scratch
+data_y <- c(12.5, 14.2, 11.8, 13.1, 15.0, 12.9) # Observed measurements
+
+# Target log-posterior: log-prior N(10, 5^2) + log-likelihood sum N(theta, 2^2)
+target_log_posterior <- function(theta) {
+  log_prior <- dnorm(theta, mean = 10, sd = 5, log = TRUE)
+  log_lik <- sum(dnorm(data_y, mean = theta, sd = 2, log = TRUE))
+  return(log_prior + log_lik)
+}
+
+n_iter <- 5000
+chain <- numeric(n_iter)
+current <- 10.0 # Initial guess theta0
+
+for (i in 1:n_iter) {
+  candidate <- rnorm(1, mean = current, sd = 0.5)
+  log_alpha <- target_log_posterior(candidate) - target_log_posterior(current)
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+  }
+  chain[i] <- current
+}
+
+cat("Posterior Mean Estimate of theta:", mean(chain[1000:5000]), "
+")
+plot(density(chain[1000:5000]), main = "Bayesian Posterior Density for theta", col = "purple", lwd = 2)
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -67,14 +89,61 @@ Run <code>?metropolis_hastings</code> or <code>help(metropolis_hastings, package
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-# Bayesian Posterior Sampling with Metropolis-Hastings
-metropolis_hastings(function(th) dnorm(th, log=TRUE) + sum(dnorm(ehr_cohort$age, mean=th, sd=10, log=TRUE)), init=50)
+# Step-by-Step Bayesian Posterior MCMC Sampler from Scratch
+data_y <- c(12.5, 14.2, 11.8, 13.1, 15.0, 12.9) # Observed measurements
+
+# Target log-posterior: log-prior N(10, 5^2) + log-likelihood sum N(theta, 2^2)
+target_log_posterior <- function(theta) {
+  log_prior <- dnorm(theta, mean = 10, sd = 5, log = TRUE)
+  log_lik <- sum(dnorm(data_y, mean = theta, sd = 2, log = TRUE))
+  return(log_prior + log_lik)
+}
+
+n_iter <- 5000
+chain <- numeric(n_iter)
+current <- 10.0 # Initial guess theta0
+
+for (i in 1:n_iter) {
+  candidate <- rnorm(1, mean = current, sd = 0.5)
+  log_alpha <- target_log_posterior(candidate) - target_log_posterior(current)
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+  }
+  chain[i] <- current
+}
+
+cat("Posterior Mean Estimate of theta:", mean(chain[1000:5000]), "
+")
+plot(density(chain[1000:5000]), main = "Bayesian Posterior Density for theta", col = "purple", lwd = 2)
 ```
 
 ```{r practice-ex-solution}
-# Bayesian Posterior Sampling with Metropolis-Hastings
-metropolis_hastings(function(th) dnorm(th, log=TRUE) + sum(dnorm(ehr_cohort$age, mean=th, sd=10, log=TRUE)), init=50)
+# Step-by-Step Bayesian Posterior MCMC Sampler from Scratch
+data_y <- c(12.5, 14.2, 11.8, 13.1, 15.0, 12.9) # Observed measurements
+
+# Target log-posterior: log-prior N(10, 5^2) + log-likelihood sum N(theta, 2^2)
+target_log_posterior <- function(theta) {
+  log_prior <- dnorm(theta, mean = 10, sd = 5, log = TRUE)
+  log_lik <- sum(dnorm(data_y, mean = theta, sd = 2, log = TRUE))
+  return(log_prior + log_lik)
+}
+
+n_iter <- 5000
+chain <- numeric(n_iter)
+current <- 10.0 # Initial guess theta0
+
+for (i in 1:n_iter) {
+  candidate <- rnorm(1, mean = current, sd = 0.5)
+  log_alpha <- target_log_posterior(candidate) - target_log_posterior(current)
+  if (log(runif(1)) < log_alpha) {
+    current <- candidate
+  }
+  chain[i] <- current
+}
+
+cat("Posterior Mean Estimate of theta:", mean(chain[1000:5000]), "
+")
+plot(density(chain[1000:5000]), main = "Bayesian Posterior Density for theta", col = "purple", lwd = 2)
 ```
 
 ```{r practice-ex-check}

@@ -31,9 +31,28 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-robbins_monro(noisy_g = function(th) (th - 3) + rnorm(1, sd=0.2), init = 0, n_iter = 1000, c = 1)
+# Step-by-Step Robbins-Monro Stochastic Approximation from Scratch
+n_iter <- 1000
+c_scale <- 1.0
+noisy_g <- function(th) (th - 3) + rnorm(1, sd = 0.2) # Root at theta = 3
+
+theta_seq <- numeric(n_iter)
+current_theta <- 0.0 # Initial guess
+
+for (n in 1:n_iter) {
+  # 1. Step size decay: a_n = c / n
+  a_n <- c_scale / n
+  
+  # 2. Observe noisy measurement
+  obs <- noisy_g(current_theta)
+  
+  # 3. Update iteration: theta_{n+1} = theta_n - a_n * obs
+  current_theta <- current_theta - a_n * obs
+  theta_seq[n] <- current_theta
+}
+
+plot(theta_seq, type = "l", col = "red", main = "Robbins-Monro Convergence to Root (theta = 3)")
+abline(h = 3, lty = 2, col = "blue")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -68,12 +87,53 @@ Run <code>?robbins_monro</code> or <code>help(robbins_monro, package = "srm")</c
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-robbins_monro(noisy_g = function(th) (th - 3) + rnorm(1, sd=0.2), init = 0, n_iter = 1000, c = 1)
+# Step-by-Step Robbins-Monro Stochastic Approximation from Scratch
+n_iter <- 1000
+c_scale <- 1.0
+noisy_g <- function(th) (th - 3) + rnorm(1, sd = 0.2) # Root at theta = 3
+
+theta_seq <- numeric(n_iter)
+current_theta <- 0.0 # Initial guess
+
+for (n in 1:n_iter) {
+  # 1. Step size decay: a_n = c / n
+  a_n <- c_scale / n
+  
+  # 2. Observe noisy measurement
+  obs <- noisy_g(current_theta)
+  
+  # 3. Update iteration: theta_{n+1} = theta_n - a_n * obs
+  current_theta <- current_theta - a_n * obs
+  theta_seq[n] <- current_theta
+}
+
+plot(theta_seq, type = "l", col = "red", main = "Robbins-Monro Convergence to Root (theta = 3)")
+abline(h = 3, lty = 2, col = "blue")
 ```
 
 ```{r practice-ex-solution}
-robbins_monro(noisy_g = function(th) (th - 3) + rnorm(1, sd=0.2), init = 0, n_iter = 1000, c = 1)
+# Step-by-Step Robbins-Monro Stochastic Approximation from Scratch
+n_iter <- 1000
+c_scale <- 1.0
+noisy_g <- function(th) (th - 3) + rnorm(1, sd = 0.2) # Root at theta = 3
+
+theta_seq <- numeric(n_iter)
+current_theta <- 0.0 # Initial guess
+
+for (n in 1:n_iter) {
+  # 1. Step size decay: a_n = c / n
+  a_n <- c_scale / n
+  
+  # 2. Observe noisy measurement
+  obs <- noisy_g(current_theta)
+  
+  # 3. Update iteration: theta_{n+1} = theta_n - a_n * obs
+  current_theta <- current_theta - a_n * obs
+  theta_seq[n] <- current_theta
+}
+
+plot(theta_seq, type = "l", col = "red", main = "Robbins-Monro Convergence to Root (theta = 3)")
+abline(h = 3, lty = 2, col = "blue")
 ```
 
 ```{r practice-ex-check}

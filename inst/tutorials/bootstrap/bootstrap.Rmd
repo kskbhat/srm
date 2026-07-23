@@ -31,9 +31,29 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-bootstrap_ci(data = ehr_cohort$age, statistic = mean, R = 1000)
+# Step-by-Step Non-Parametric Bootstrap Resampling from Scratch
+data_sample <- c(23, 45, 67, 34, 56, 78, 89, 90, 45, 67)
+R_replicates <- 1000
+n_obs <- length(data_sample)
+
+boot_means <- numeric(R_replicates)
+
+# Resampling Loop with Replacement
+for (i in 1:R_replicates) {
+  boot_draw <- sample(data_sample, size = n_obs, replace = TRUE)
+  boot_means[i] <- mean(boot_draw)
+}
+
+# Standard error and 95% Percentile Confidence Interval
+boot_se <- sd(boot_means)
+ci_95 <- quantile(boot_means, probs = c(0.025, 0.975))
+
+cat("Original Sample Mean:", mean(data_sample), "
+")
+cat("Bootstrap SE:", boot_se, "
+")
+cat("95% Percentile CI:", ci_95, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -67,12 +87,55 @@ Run <code>?bootstrap_ci</code> or <code>help(bootstrap_ci, package = "srm")</cod
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-bootstrap_ci(data = ehr_cohort$age, statistic = mean, R = 1000)
+# Step-by-Step Non-Parametric Bootstrap Resampling from Scratch
+data_sample <- c(23, 45, 67, 34, 56, 78, 89, 90, 45, 67)
+R_replicates <- 1000
+n_obs <- length(data_sample)
+
+boot_means <- numeric(R_replicates)
+
+# Resampling Loop with Replacement
+for (i in 1:R_replicates) {
+  boot_draw <- sample(data_sample, size = n_obs, replace = TRUE)
+  boot_means[i] <- mean(boot_draw)
+}
+
+# Standard error and 95% Percentile Confidence Interval
+boot_se <- sd(boot_means)
+ci_95 <- quantile(boot_means, probs = c(0.025, 0.975))
+
+cat("Original Sample Mean:", mean(data_sample), "
+")
+cat("Bootstrap SE:", boot_se, "
+")
+cat("95% Percentile CI:", ci_95, "
+")
 ```
 
 ```{r practice-ex-solution}
-bootstrap_ci(data = ehr_cohort$age, statistic = mean, R = 1000)
+# Step-by-Step Non-Parametric Bootstrap Resampling from Scratch
+data_sample <- c(23, 45, 67, 34, 56, 78, 89, 90, 45, 67)
+R_replicates <- 1000
+n_obs <- length(data_sample)
+
+boot_means <- numeric(R_replicates)
+
+# Resampling Loop with Replacement
+for (i in 1:R_replicates) {
+  boot_draw <- sample(data_sample, size = n_obs, replace = TRUE)
+  boot_means[i] <- mean(boot_draw)
+}
+
+# Standard error and 95% Percentile Confidence Interval
+boot_se <- sd(boot_means)
+ci_95 <- quantile(boot_means, probs = c(0.025, 0.975))
+
+cat("Original Sample Mean:", mean(data_sample), "
+")
+cat("Bootstrap SE:", boot_se, "
+")
+cat("95% Percentile CI:", ci_95, "
+")
 ```
 
 ```{r practice-ex-check}

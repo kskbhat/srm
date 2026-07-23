@@ -31,9 +31,29 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-gibbs_sampler(n_iter = 5000, rho = 0.8)
+# Step-by-Step Bivariate Normal Gibbs Sampler from Scratch
+n_iter <- 5000
+rho <- 0.8 # Target correlation
+
+mat <- matrix(0, nrow = n_iter, ncol = 2)
+colnames(mat) <- c("X", "Y")
+
+x <- 0 # Initial X
+y <- 0 # Initial Y
+
+for (i in 1:n_iter) {
+  # 1. Update X given Y: X ~ N(rho * Y, 1 - rho^2)
+  x <- rnorm(1, mean = rho * y, sd = sqrt(1 - rho^2))
+  
+  # 2. Update Y given X: Y ~ N(rho * X, 1 - rho^2)
+  y <- rnorm(1, mean = rho * x, sd = sqrt(1 - rho^2))
+  
+  mat[i, ] <- c(x, y)
+}
+
+cat("Sampled Correlation:", cor(mat[,1], mat[,2]), "
+")
+plot(mat[1:500, ], type = "b", col = rgb(0,0,1,0.2), main = "Gibbs Sampler Coordinates Trajectory")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -66,12 +86,55 @@ Run <code>?gibbs_sampler</code> or <code>help(gibbs_sampler, package = "srm")</c
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-gibbs_sampler(n_iter = 5000, rho = 0.8)
+# Step-by-Step Bivariate Normal Gibbs Sampler from Scratch
+n_iter <- 5000
+rho <- 0.8 # Target correlation
+
+mat <- matrix(0, nrow = n_iter, ncol = 2)
+colnames(mat) <- c("X", "Y")
+
+x <- 0 # Initial X
+y <- 0 # Initial Y
+
+for (i in 1:n_iter) {
+  # 1. Update X given Y: X ~ N(rho * Y, 1 - rho^2)
+  x <- rnorm(1, mean = rho * y, sd = sqrt(1 - rho^2))
+  
+  # 2. Update Y given X: Y ~ N(rho * X, 1 - rho^2)
+  y <- rnorm(1, mean = rho * x, sd = sqrt(1 - rho^2))
+  
+  mat[i, ] <- c(x, y)
+}
+
+cat("Sampled Correlation:", cor(mat[,1], mat[,2]), "
+")
+plot(mat[1:500, ], type = "b", col = rgb(0,0,1,0.2), main = "Gibbs Sampler Coordinates Trajectory")
 ```
 
 ```{r practice-ex-solution}
-gibbs_sampler(n_iter = 5000, rho = 0.8)
+# Step-by-Step Bivariate Normal Gibbs Sampler from Scratch
+n_iter <- 5000
+rho <- 0.8 # Target correlation
+
+mat <- matrix(0, nrow = n_iter, ncol = 2)
+colnames(mat) <- c("X", "Y")
+
+x <- 0 # Initial X
+y <- 0 # Initial Y
+
+for (i in 1:n_iter) {
+  # 1. Update X given Y: X ~ N(rho * Y, 1 - rho^2)
+  x <- rnorm(1, mean = rho * y, sd = sqrt(1 - rho^2))
+  
+  # 2. Update Y given X: Y ~ N(rho * X, 1 - rho^2)
+  y <- rnorm(1, mean = rho * x, sd = sqrt(1 - rho^2))
+  
+  mat[i, ] <- c(x, y)
+}
+
+cat("Sampled Correlation:", cor(mat[,1], mat[,2]), "
+")
+plot(mat[1:500, ], type = "b", col = rgb(0,0,1,0.2), main = "Gibbs Sampler Coordinates Trajectory")
 ```
 
 ```{r practice-ex-check}

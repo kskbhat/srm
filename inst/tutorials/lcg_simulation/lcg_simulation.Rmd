@@ -31,9 +31,23 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-lcg(n = 20, seed = 12345, a = 1103515245, c = 12345, m = 2^31)
+# Step-by-Step Linear Congruential Generator (LCG) from Scratch
+n <- 20
+seed <- 12345
+a <- 1103515245
+c <- 12345
+m <- 2^31
+
+x <- numeric(n)
+current <- seed
+
+# LCG Recurrence Loop: X_{n+1} = (a * X_n + c) mod m
+for (i in 1:n) {
+  current <- (a * current + c) %% m
+  x[i] <- current / m # Normalize to [0, 1)
+}
+
+print(x)
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -69,12 +83,43 @@ Run <code>?lcg</code> or <code>help(lcg, package = "srm")</code> in your RStudio
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-lcg(n = 20, seed = 12345, a = 1103515245, c = 12345, m = 2^31)
+# Step-by-Step Linear Congruential Generator (LCG) from Scratch
+n <- 20
+seed <- 12345
+a <- 1103515245
+c <- 12345
+m <- 2^31
+
+x <- numeric(n)
+current <- seed
+
+# LCG Recurrence Loop: X_{n+1} = (a * X_n + c) mod m
+for (i in 1:n) {
+  current <- (a * current + c) %% m
+  x[i] <- current / m # Normalize to [0, 1)
+}
+
+print(x)
 ```
 
 ```{r practice-ex-solution}
-lcg(n = 20, seed = 12345, a = 1103515245, c = 12345, m = 2^31)
+# Step-by-Step Linear Congruential Generator (LCG) from Scratch
+n <- 20
+seed <- 12345
+a <- 1103515245
+c <- 12345
+m <- 2^31
+
+x <- numeric(n)
+current <- seed
+
+# LCG Recurrence Loop: X_{n+1} = (a * X_n + c) mod m
+for (i in 1:n) {
+  current <- (a * current + c) %% m
+  x[i] <- current / m # Normalize to [0, 1)
+}
+
+print(x)
 ```
 
 ```{r practice-ex-check}

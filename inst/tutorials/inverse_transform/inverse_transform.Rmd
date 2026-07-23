@@ -31,9 +31,19 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-inv_transform_exp(n = 100, rate = 2)
+# Step-by-Step Inverse-Transform Sampler for Exp(lambda = 2) from Scratch
+n_samples <- 500
+rate_lambda <- 2
+
+# 1. Generate Uniform U ~ Unif(0, 1)
+u <- runif(n_samples)
+
+# 2. Apply Inverse CDF: X = -log(1 - U) / lambda
+x_exp <- -log(1 - u) / rate_lambda
+
+# Plot empirical histogram vs theoretical density
+hist(x_exp, probability = TRUE, main = "Inverse-Transform Exp(2) Samples")
+curve(dexp(x, rate = rate_lambda), add = TRUE, col = "red", lwd = 2)
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -66,12 +76,35 @@ Run <code>?inv_transform_exp</code> or <code>help(inv_transform_exp, package = "
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-inv_transform_exp(n = 100, rate = 2)
+# Step-by-Step Inverse-Transform Sampler for Exp(lambda = 2) from Scratch
+n_samples <- 500
+rate_lambda <- 2
+
+# 1. Generate Uniform U ~ Unif(0, 1)
+u <- runif(n_samples)
+
+# 2. Apply Inverse CDF: X = -log(1 - U) / lambda
+x_exp <- -log(1 - u) / rate_lambda
+
+# Plot empirical histogram vs theoretical density
+hist(x_exp, probability = TRUE, main = "Inverse-Transform Exp(2) Samples")
+curve(dexp(x, rate = rate_lambda), add = TRUE, col = "red", lwd = 2)
 ```
 
 ```{r practice-ex-solution}
-inv_transform_exp(n = 100, rate = 2)
+# Step-by-Step Inverse-Transform Sampler for Exp(lambda = 2) from Scratch
+n_samples <- 500
+rate_lambda <- 2
+
+# 1. Generate Uniform U ~ Unif(0, 1)
+u <- runif(n_samples)
+
+# 2. Apply Inverse CDF: X = -log(1 - U) / lambda
+x_exp <- -log(1 - u) / rate_lambda
+
+# Plot empirical histogram vs theoretical density
+hist(x_exp, probability = TRUE, main = "Inverse-Transform Exp(2) Samples")
+curve(dexp(x, rate = rate_lambda), add = TRUE, col = "red", lwd = 2)
 ```
 
 ```{r practice-ex-check}

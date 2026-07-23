@@ -31,9 +31,24 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-mean(financial_losses) # Explore leave-one-out jackknife statistics
+# Step-by-Step Leave-One-Out Jackknife Estimation from Scratch
+data_sample <- c(12, 15, 18, 22, 30, 45, 50, 62, 75, 90)
+n <- length(data_sample)
+
+jack_means <- numeric(n)
+
+# Leave-one-out resampling loop
+for (i in 1:n) {
+  jack_sample <- data_sample[-i] # Drop i-th observation
+  jack_means[i] <- mean(jack_sample)
+}
+
+jack_se <- sqrt(((n - 1) / n) * sum((jack_means - mean(jack_means))^2))
+
+cat("Original Sample Mean:", mean(data_sample), "
+")
+cat("Jackknife Standard Error:", jack_se, "
+")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -65,12 +80,45 @@ Run <code>?jackknife</code> or <code>help(jackknife, package = "srm")</code> in 
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-mean(financial_losses) # Explore leave-one-out jackknife statistics
+# Step-by-Step Leave-One-Out Jackknife Estimation from Scratch
+data_sample <- c(12, 15, 18, 22, 30, 45, 50, 62, 75, 90)
+n <- length(data_sample)
+
+jack_means <- numeric(n)
+
+# Leave-one-out resampling loop
+for (i in 1:n) {
+  jack_sample <- data_sample[-i] # Drop i-th observation
+  jack_means[i] <- mean(jack_sample)
+}
+
+jack_se <- sqrt(((n - 1) / n) * sum((jack_means - mean(jack_means))^2))
+
+cat("Original Sample Mean:", mean(data_sample), "
+")
+cat("Jackknife Standard Error:", jack_se, "
+")
 ```
 
 ```{r practice-ex-solution}
-mean(financial_losses) # Explore leave-one-out jackknife statistics
+# Step-by-Step Leave-One-Out Jackknife Estimation from Scratch
+data_sample <- c(12, 15, 18, 22, 30, 45, 50, 62, 75, 90)
+n <- length(data_sample)
+
+jack_means <- numeric(n)
+
+# Leave-one-out resampling loop
+for (i in 1:n) {
+  jack_sample <- data_sample[-i] # Drop i-th observation
+  jack_means[i] <- mean(jack_sample)
+}
+
+jack_se <- sqrt(((n - 1) / n) * sum((jack_means - mean(jack_means))^2))
+
+cat("Original Sample Mean:", mean(data_sample), "
+")
+cat("Jackknife Standard Error:", jack_se, "
+")
 ```
 
 ```{r practice-ex-check}

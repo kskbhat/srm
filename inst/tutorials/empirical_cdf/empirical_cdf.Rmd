@@ -31,9 +31,15 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-plot(ecdf(financial_losses), main = 'Empirical CDF of Financial Losses')
+# Step-by-Step Empirical CDF (EDF) Calculation from Scratch
+data_obs <- c(1.2, 2.5, 3.1, 4.8, 5.2, 6.0, 7.3, 8.1)
+n <- length(data_obs)
+
+sorted_x <- sort(data_obs)
+edf_y <- (1:n) / n # Step heights = 1/n
+
+plot(sorted_x, edf_y, type = "s", xlab = "x", ylab = "Fn(x)", main = "Empirical CDF Step Function")
+points(sorted_x, edf_y, pch = 16, col = "blue")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -65,12 +71,27 @@ Run <code>?ecdf</code> or <code>help(ecdf, package = "srm")</code> in your RStud
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-plot(ecdf(financial_losses), main = 'Empirical CDF of Financial Losses')
+# Step-by-Step Empirical CDF (EDF) Calculation from Scratch
+data_obs <- c(1.2, 2.5, 3.1, 4.8, 5.2, 6.0, 7.3, 8.1)
+n <- length(data_obs)
+
+sorted_x <- sort(data_obs)
+edf_y <- (1:n) / n # Step heights = 1/n
+
+plot(sorted_x, edf_y, type = "s", xlab = "x", ylab = "Fn(x)", main = "Empirical CDF Step Function")
+points(sorted_x, edf_y, pch = 16, col = "blue")
 ```
 
 ```{r practice-ex-solution}
-plot(ecdf(financial_losses), main = 'Empirical CDF of Financial Losses')
+# Step-by-Step Empirical CDF (EDF) Calculation from Scratch
+data_obs <- c(1.2, 2.5, 3.1, 4.8, 5.2, 6.0, 7.3, 8.1)
+n <- length(data_obs)
+
+sorted_x <- sort(data_obs)
+edf_y <- (1:n) / n # Step heights = 1/n
+
+plot(sorted_x, edf_y, type = "s", xlab = "x", ylab = "Fn(x)", main = "Empirical CDF Step Function")
+points(sorted_x, edf_y, pch = 16, col = "blue")
 ```
 
 ```{r practice-ex-check}

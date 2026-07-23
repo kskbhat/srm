@@ -31,9 +31,32 @@ gradethis::gradethis_setup()
 Experiment with the algorithm below! Change parameters and observe how the output responds:
 
 ```{r demo-code, exercise=TRUE}
-library(srm)
-# Run exported srm function:
-ising_simulation(size = 10, beta = 0.44, n_steps = 10000)
+# Step-by-Step 2D Ising Lattice Metropolis Model from Scratch
+size <- 10
+beta <- 0.44 # Inverse temperature
+n_steps <- 10000
+
+# Initialize random grid (-1 or +1)
+grid <- matrix(sample(c(-1, 1), size * size, replace = TRUE), nrow = size, ncol = size)
+
+for (step in 1:n_steps) {
+  i <- sample(1:size, 1)
+  j <- sample(1:size, 1)
+  
+  # Periodic boundary neighbors
+  top <- grid[ifelse(i == 1, size, i - 1), j]
+  bottom <- grid[ifelse(i == size, 1, i + 1), j]
+  left <- grid[i, ifelse(j == 1, size, j - 1)]
+  right <- grid[i, ifelse(j == size, 1, j + 1)]
+  
+  dE <- 2 * grid[i, j] * (top + bottom + left + right)
+  
+  if (dE <= 0 || runif(1) < exp(-beta * dE)) {
+    grid[i, j] <- -grid[i, j] # Flip spin
+  }
+}
+
+image(grid, col = c("black", "gold"), main = "2D Ising Spin Grid")
 ```
 
 <div style="background-color: #fff8e6; border-left: 5px solid #ffb300; padding: 12px; margin-top: 15px;">
@@ -67,12 +90,61 @@ Run <code>?ising_simulation</code> or <code>help(ising_simulation, package = "sr
 Before running the code below, predict what will happen:
 
 ```{r practice-ex, exercise=TRUE, exercise.eval=FALSE}
-# Try modifying the parameters below:
-ising_simulation(size = 10, beta = 0.44, n_steps = 10000)
+# Step-by-Step 2D Ising Lattice Metropolis Model from Scratch
+size <- 10
+beta <- 0.44 # Inverse temperature
+n_steps <- 10000
+
+# Initialize random grid (-1 or +1)
+grid <- matrix(sample(c(-1, 1), size * size, replace = TRUE), nrow = size, ncol = size)
+
+for (step in 1:n_steps) {
+  i <- sample(1:size, 1)
+  j <- sample(1:size, 1)
+  
+  # Periodic boundary neighbors
+  top <- grid[ifelse(i == 1, size, i - 1), j]
+  bottom <- grid[ifelse(i == size, 1, i + 1), j]
+  left <- grid[i, ifelse(j == 1, size, j - 1)]
+  right <- grid[i, ifelse(j == size, 1, j + 1)]
+  
+  dE <- 2 * grid[i, j] * (top + bottom + left + right)
+  
+  if (dE <= 0 || runif(1) < exp(-beta * dE)) {
+    grid[i, j] <- -grid[i, j] # Flip spin
+  }
+}
+
+image(grid, col = c("black", "gold"), main = "2D Ising Spin Grid")
 ```
 
 ```{r practice-ex-solution}
-ising_simulation(size = 10, beta = 0.44, n_steps = 10000)
+# Step-by-Step 2D Ising Lattice Metropolis Model from Scratch
+size <- 10
+beta <- 0.44 # Inverse temperature
+n_steps <- 10000
+
+# Initialize random grid (-1 or +1)
+grid <- matrix(sample(c(-1, 1), size * size, replace = TRUE), nrow = size, ncol = size)
+
+for (step in 1:n_steps) {
+  i <- sample(1:size, 1)
+  j <- sample(1:size, 1)
+  
+  # Periodic boundary neighbors
+  top <- grid[ifelse(i == 1, size, i - 1), j]
+  bottom <- grid[ifelse(i == size, 1, i + 1), j]
+  left <- grid[i, ifelse(j == 1, size, j - 1)]
+  right <- grid[i, ifelse(j == size, 1, j + 1)]
+  
+  dE <- 2 * grid[i, j] * (top + bottom + left + right)
+  
+  if (dE <= 0 || runif(1) < exp(-beta * dE)) {
+    grid[i, j] <- -grid[i, j] # Flip spin
+  }
+}
+
+image(grid, col = c("black", "gold"), main = "2D Ising Spin Grid")
 ```
 
 ```{r practice-ex-check}
