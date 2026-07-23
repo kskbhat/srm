@@ -13,10 +13,14 @@ test_that("Inverse-transform exponential generates non-negative values", {
 test_that("Accept-Reject Beta sampler achieves valid efficiency", {
   res <- accept_reject_beta(50, shape1 = 2, shape2 = 5)
   expect_equal(length(res$samples), 50)
+  expect_true(res$attempts >= 50)
   expect_true(res$efficiency > 0 && res$efficiency <= 1)
 })
 
-test_that("Poisson process arrival times are monotonically increasing", {
+test_that("Poisson process arrival times stay within T_max and are monotonic", {
   arrivals <- sim_poisson_process(T_max = 10, rate = 2)
-  expect_true(all(diff(arrivals) > 0))
+  expect_true(all(arrivals <= 10))
+  if (length(arrivals) > 1) {
+    expect_true(all(diff(arrivals) > 0))
+  }
 })
