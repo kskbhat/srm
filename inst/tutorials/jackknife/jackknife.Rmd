@@ -1,5 +1,6 @@
 ---
 title: "Jackknife Bias Estimation"
+description: "Calculate leave-one-out Jackknife parameter bias and standard error estimates from scratch."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

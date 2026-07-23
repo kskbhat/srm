@@ -1,5 +1,6 @@
 ---
 title: "Control Variates Variance Reduction"
+description: "Achieve Monte Carlo variance reduction using correlated control variates h(X) with known expectation."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

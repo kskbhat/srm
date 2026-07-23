@@ -1,5 +1,6 @@
 ---
 title: "Multi-Level Splitting"
+description: "Estimate extreme rare event probabilities by splitting surviving particles across intermediate thresholds."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

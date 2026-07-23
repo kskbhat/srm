@@ -1,5 +1,6 @@
 ---
 title: "Bayesian MCMC Modeling"
+description: "Perform Bayesian posterior MCMC updating by combining prior knowledge and likelihood evidence."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

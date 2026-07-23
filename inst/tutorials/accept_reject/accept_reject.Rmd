@@ -1,5 +1,6 @@
 ---
 title: "Accept-Reject Sampling"
+description: "Sample non-standard target densities using Accept-Reject envelope bounding c * g(x) from scratch."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

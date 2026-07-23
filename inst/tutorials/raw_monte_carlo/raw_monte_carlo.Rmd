@@ -1,5 +1,6 @@
 ---
 title: "Raw Monte Carlo Integration"
+description: "Calculate Monte Carlo integrals, standard error scaling O(N^-1/2), and confidence intervals from scratch."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

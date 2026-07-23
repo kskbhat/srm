@@ -1,5 +1,6 @@
 ---
 title: "2D Ising Lattice Model"
+description: "Simulate 2D atomic spin lattice ferromagnetism and phase transitions using Metropolis updates."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

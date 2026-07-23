@@ -1,5 +1,6 @@
 ---
 title: "Sampling Designs & Power Calculations"
+description: "Learn sample size formulas, Neyman stratified allocation, and CONSORT trial design flowcharts in R."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

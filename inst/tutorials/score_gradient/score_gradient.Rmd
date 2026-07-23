@@ -1,5 +1,6 @@
 ---
 title: "Score Function Gradient Estimator"
+description: "Estimate expectation gradients using the score function log-derivative trick from scratch."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

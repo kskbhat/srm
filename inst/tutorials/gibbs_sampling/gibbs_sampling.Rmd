@@ -1,5 +1,6 @@
 ---
 title: "Gibbs Sampling"
+description: "Sample multi-dimensional target distributions using full conditional updates in R."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

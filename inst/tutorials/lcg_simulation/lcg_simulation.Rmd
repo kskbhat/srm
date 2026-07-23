@@ -1,5 +1,6 @@
 ---
 title: "Linear Congruential Generators (LCG)"
+description: "Master Linear Congruential Generators (LCG), Hull-Dobell conditions, and pseudo-random lattice structures."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

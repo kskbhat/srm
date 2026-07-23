@@ -1,5 +1,6 @@
 ---
 title: "Metropolis-Hastings Algorithm"
+description: "Build Random-Walk Metropolis-Hastings MCMC samplers from scratch to sample unnormalized target densities."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

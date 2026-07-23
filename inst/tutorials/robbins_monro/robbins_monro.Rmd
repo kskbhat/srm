@@ -1,5 +1,6 @@
 ---
 title: "Robbins-Monro Stochastic Approximation"
+description: "Perform stochastic root-finding and parameter optimization using the Robbins-Monro algorithm."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

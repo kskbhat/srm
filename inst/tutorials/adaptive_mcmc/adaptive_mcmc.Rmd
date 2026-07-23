@@ -1,5 +1,6 @@
 ---
 title: "Adaptive Metropolis (Haario et al.)"
+description: "Implement Haario Adaptive Metropolis MCMC with dynamic proposal covariance adaptation."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

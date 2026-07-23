@@ -1,5 +1,6 @@
 ---
 title: "Coupling From The Past (CFTP)"
+description: "Implement Coupling From The Past (CFTP) exact un-biased MCMC sampling without burn-in."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

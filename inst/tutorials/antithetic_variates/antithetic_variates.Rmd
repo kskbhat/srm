@@ -1,5 +1,6 @@
 ---
 title: "Antithetic Variates"
+description: "Reduce Monte Carlo integration variance using negative correlation pairing (U, 1-U) from scratch."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Poisson Processes & Arrival Times"
+description: "Simulate homogeneous and non-homogeneous Poisson point processes with exponential inter-arrival times."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

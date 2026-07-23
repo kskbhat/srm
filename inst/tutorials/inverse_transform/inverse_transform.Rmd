@@ -1,5 +1,6 @@
 ---
 title: "Inverse-Transform Method"
+description: "Generate continuous random variates from scratch using the inverse CDF transform method X = F^-1(U)."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

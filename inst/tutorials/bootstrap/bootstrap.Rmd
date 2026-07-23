@@ -1,5 +1,6 @@
 ---
 title: "Non-Parametric Bootstrap Resampling"
+description: "Implement non-parametric bootstrap resampling, standard errors, and percentile confidence intervals in R."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

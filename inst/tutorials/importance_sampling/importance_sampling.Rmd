@@ -1,5 +1,6 @@
 ---
 title: "Importance Sampling for Rare Events"
+description: "Estimate rare event probabilities and extreme tail risks using importance sampling proposal densities."
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
